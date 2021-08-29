@@ -1,0 +1,32 @@
+@page "/datalist"
+@inject IJSRuntime JSRuntime
+
+
+
+
+<h3>ข้อมูลเจ้าหน้าที่  </h3>
+@*<input type="button" class="btn btn-primary" @onclick="synData" value="synData" />*@
+
+
+<input class="form-control" @bind="currentInputValue" />
+<button class="btn btn-secondary" @onclick="Save">บันทึก</button>
+<button class="btn btn-secondary" @onclick="Read">อ่าน</button>
+<button class="btn btn-secondary" @onclick="Delete">ลบ</button>
+
+@code {
+    string currentInputValue;
+    public async Task Save()
+        {
+            await JSRuntime.InvokeVoidAsync("localStorage.setItem", "name", currentInputValue);
+        }
+
+        public async Task Read()
+        {
+            currentInputValue = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "name");
+        }
+
+        public async Task Delete()
+        {
+            await JSRuntime.InvokeAsync<string>("localStorage.removeItem", "name");
+        }
+}

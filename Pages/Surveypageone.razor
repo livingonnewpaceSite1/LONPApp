@@ -1,0 +1,261 @@
+﻿@page "/surveypageone"
+@page "/surveypageone/{HC}"
+
+@inject Models.EmployeeContext DBContext
+@inject Models.EmployeeContext DBContext
+@inject NavigationManager UriHelper
+@using FirstBlazorApp.Models
+@using System.ComponentModel.DataAnnotations
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+<EditForm Model="@recordSurveyProfile" OnValidSubmit="@HandleValidSubmit" >
+<input type='hidden' name='next' value='1'>
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12">
+				<label><b>ข้อมูลพื้นฐานครัวเรือน (หน้าที่ 1/20)</b></label>
+			</div>
+		</div>
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label for="HC">รหัสบ้าน </label>
+				<input type='text' id="HC" name='HC'onkeyup="autoTab(this,3)" onkeypress="autoTab(this,3)" maxlength='13' @bind-value="@recordSurveyProfile.HC" placeholder="ที่ระบุในทะเบียนบ้าน ขอดูทะเบียนบ้าน"  required >
+				<!--<input type='text' id="HC" name='HC' placeholder="ที่ระบุในทะเบียนบ้าน ขอดูทะเบียนบ้าน" onkeyup="autoTab(this,3)" onkeypress="autoTab(this,3)" maxlength='13' onblur="HC_out(this.form)" value='<?php echo$_SESSION['HC']?>' class="form-control" required >-->
+				<label>กรณีไม่สามารถจะขอดูทะเบียนบ้านได้ ให้สร้างรหัสเองได้ โดยใส่ 0 หน้าเลขรหัสจังหวัด 2 หลัก รหัสแบบสอบถาม  8 หลัก  รวมเป็น 11 หลัก</label><br>
+<!--				แล้วตามด้วยการสร้างโคดกันเองแยกเป็นตำบลหรือเลขที่บ้านกันเองได้ โดยไม่ให้มันซ้ำซ้อนกันครับ หรืออาจจะเป็น 0XY แล้วตามด้วยรหัสแบบสอบถามก็ได้นะครับ รหัสแบบสอบถาม 8 หลัก รวมเป็น 11 หลักครับ โดย 0 ตัวหน้าแปลว่า ไม่สามารถป้อนรหัสบ้านได้-->
+				<label>เช่น มุกดาหาร <font color='red'>0</font><font color='green'>49</font><font color='blue'>00000001</font></label><br>
+				<label>เช่น ปัตตานี <font color='red'>0</font><font color='green'>94</font><font color='blue'>00000001</font></label><br>
+				<label><a onclick='document.survey.JUN.focus()' style='color:blue;cursor:pointer' >ดูรหัสจังหวัด</a></label><br>
+				<label><font color='red'>หมายเหตุ : เลขรหัสบ้านห้ามซ้ำกันในฐานข้อมูล</font>)</label><br>
+				<!--label>กรณีไม่มีรหัสบ้าน ให้กรอกดังนี้ <font color='green'>0940-1</font> ตามด้วยบ้านเลขที่ 6 หลัก (ข้างหน้า 3 หลัก ข้างหลัง 3 หลัก)</label><br>
+				<label>เช่น บ้านเลขที่ <font color='blue'>3</font>/<font color='red'>16</font> กรอกดังนี้<font color='green'>0940-1</font><font color='blue'>003</font><font color='red'>01-6</font></label><br>
+				<label>เช่น บ้านเลขที่ <font color='blue'>17</font> กรอกดังนี้<font color='green'>0940-1</font><font color='blue'>017</font><font color='red'>00-0</font></label><br-->
+			</div>
+		</div>
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label>หมายเลขครัวเรือนเกษตรกร (สมุดเขียว) </label>
+				<input type='button' value='reset' 
+					onclick="
+						document.getElementById('AGRI_NO1').checked=false;
+						document.getElementById('AGRI_NO2').checked=false;
+				">
+					  <MatRadioGroup @bind-Value="@recordSurveyProfile.AGRI" TValue="string">
+			  <div class="custom-control custom-radio">
+			
+					<MatRadioButton Value="@("0")" Label="ไม่มี" TValue="string"></MatRadioButton>
+					</div>
+			  <div class="custom-control custom-radio">
+					<MatRadioButton Value="@("1")" Label="มี" TValue="string"></MatRadioButton>
+					<input type='text' name='AGRI_NO'  @bind-value="@recordSurveyProfile.AGRI_NO" placeholder='หมายเลขครัวเรือนเกษตรกร' class="form-control">
+				</div>
+				</MatRadioGroup>
+			</div>
+		</div>
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label for="state">จังหวัด<a href='index.php?curr=edit'>เปลี่ยนจังหวัดเริ่มต้น</a></label>
+				   <MatSelect Label="จังหวัด" @bind-Value="@SelectProvinceId" TValue="string"Outlined="true" FullWidth>
+
+		@foreach(var item in provinces1)
+	{
+	
+		<MatOption TValue="string" Value="@item.province_id">@item.province_name_thai</MatOption>
+	}
+	
+	
+</MatSelect>
+				<div class="invalid-feedback">
+					กรุณาเลือกตำบล
+				</div>
+			</div>
+
+
+			<div class="col-lg-12  mb-3">
+				<label for="country">อำเภอ</label>
+				<MatSelect Label="เลือกอำเภอ"  @bind-Value="@SelectDistrictId" TValue="string"  Outlined="true" FullWidth>
+	   
+	  
+	
+		@foreach(var item in districts)
+	{ if(item.district_id==recordSurveyProfile.AMP){
+		districtId=item.district_id;
+	}
+				
+
+						<MatOption  TValue="string" Value="@item.district_id" >@item.district_name_thai</MatOption>
+					
+				}
+	
+</MatSelect>
+				<div class="invalid-feedback">
+
+					กรุณาเลือกอำเภอ 
+				</div>
+			</div>
+
+		
+				
+
+			<div class="col-lg-12  mb-3">
+				<label for="country">ตำบล </label>
+				<!--input type="text" class="form-control" id="TMP" name="TMP" placeholder="--ตำบล--" value='<?php echo $row1->TMP?>'-->
+		
+				<MatSelect Label="เลือกอำเภอ"  @bind-Value="@SelectTambonId" TValue="string"  Outlined="true" FullWidth>
+	   
+	  
+	
+		@foreach(var item in tambons)
+					{ 
+
+						<MatOption  TValue="string" Value="@item.tambon_id" >@item.tambon_name_thai</MatOption>
+					
+			}
+	
+</MatSelect>
+				<div class="invalid-feedback">
+					กรุณาเลือกตำบล
+				</div>
+			</div>
+
+			<div class="col-lg-12  mb-3">
+				<label for="country">หมู่ที่</label>
+				<input type='text' name='MB' id='MB' class="form-control"  placeholder='--หมู่ที่--'  @bind-value="@recordSurveyProfile.MB" />'
+		
+			</div>
+
+			<div class="col-lg-12  mb-3">
+				<label for="MM">ชื่อหมู่บ้าน </label>
+				<input type='text' name='MM'   @bind-value="@recordSurveyProfile.MM" id='MM' placeholder='--ชื่อหมู่บ้าน--' class="form-control">
+			</div>
+
+			<div class="col-lg-12  mb-3">
+				<label for="POSTCODE">รหัสไปษณีย์</label>
+				<input type="text" class="form-control" id="POSTCODE"  @bind-value="@recordSurveyProfile.POSTCODE" name="POSTCODE" placeholder="--รหัสไปษณีย์--"  >
+				<div class="invalid-feedback">
+					กรุณากรอกรหัสไปษณีย์
+				</div>
+			</div>
+
+			<div class="col-lg-12  mb-3">
+				<label for="MBNO">บ้านเลขที่</label>
+				<input type='text' name='MBNO'  @bind-value="@recordSurveyProfile.MBNO" placeholder='--บ้านเลขที่--' class="form-control">
+			</div>
+		</div>
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label for="PERSON">ชื่อผู้ให้ข้อมูล</label>
+				<input type='button' value='reset' 
+					onclick="
+						document.getElementById('PREFIX1').checked=false;
+						document.getElementById('PREFIX2').checked=false;
+						document.getElementById('PREFIX3').checked=false;
+						document.getElementById('PREFIX4').checked=false;
+				">
+					  <MatRadioGroup @bind-Value="@recordSurveyProfile.PREFIX" TValue="string">
+				<div >
+					<MatRadioButton Value="@("1")" Label="นาย" TValue="string"></MatRadioButton>
+					</div>
+				<div >
+					<MatRadioButton Value="@("2")" Label="นาง" TValue="string"></MatRadioButton>
+				</div>
+				<div  >
+					<MatRadioButton Value="@("3")" Label="นางสาว" TValue="string"></MatRadioButton>
+				</div>
+				<div >
+					<MatRadioButton Value="@("4")" Label="อื่น ๆ" TValue="string"></MatRadioButton>
+					<input type='text' name='PERSON' @bind-value="@recordSurveyProfile.PERSON"  placeholder="--ชื่อผู้ให้ข้อมูล--" class="form-control">
+				</div>
+					
+					  </MatRadioGroup>
+			</div>
+		</div>
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label for="popid">หมายเลขบัตรประจำตัวประชาชน ของผู้ให้ข้อมูล </label>
+				<input type='text' name='popid' id='popid'  @bind-value="@recordSurveyProfile.popid"  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control">
+			</div>
+		</div>
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label for="TEL">หมายเลขโทรศัพท์ (บ้าน/มือถือ) </label>
+				<input type='text' id='TEL' name='TEL'  @bind-value="@recordSurveyProfile.TEL" placeholder="--หมายเลขโทรศัพท์--" size='30' onKeyUp="autoTab(this,2)" onKeyPress="autoTab(this,2)" maxlength='12' class="form-control">
+			</div>
+		</div>
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label for="HHM">จำนวนสมาชิกทั้งหมดในครัวเรือนตามทะเบียนบ้าน  </label>
+				<input type='text' name='HHM' id='HHM'  @bind-value="@recordSurveyProfile.HHM" size='5' placeholder="--จำนวนสมาชิกทั้งหมดในครัวเรือนตามทะเบียนบ้าน--"  class="form-control" required>
+			</div>
+		</div>
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label for="PPP">จำนวนคนที่อาศัยอยู่จริงตามทะเบียนบ้าน </label>
+			<input type='text' name='PPP' id='PPP'  @bind-value="@recordSurveyProfile.PPP" size='5' placeholder="--จำนวนคนที่อาศัยอยู่จริงตามทะเบียนบ้าน--" class="form-control" required>
+			</div>
+		</div>
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label for="PP">จำนวนคนที่อาศัยอยู่จริงแต่<font color='red'>ไม่มี</font>ชื่อในทะเบียนบ้าน </label>
+			<input type='text' name='PP' id='PP'  @bind-value="@recordSurveyProfile.PP" size='5' placeholder="--จำนวนคนที่อาศัยอยู่แต่ไม่มีชื่อในทะเบียนบ้าน--" class="form-control" required>
+			</div>
+		</div>
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label for="pic">รูป (ขนาดรูปห้ามเกิน 400K)</label>
+					<input type='file' name='picture' accept="image/*" id='pic' onchange="preview_image(event)" class="form-control">
+			</div>
+
+			<div class="col-lg-12  mb-3">
+				<div style='display:table-cell' align='right'>คำอธิบายรูป : </div>
+				<div style='display:table-cell'><textarea name='detail' class="form-control"></textarea></div>
+			</div>
+
+					
+					<br><br><img id="output_image"width='400' />
+
+
+			<br>
+
+			</div>
+
+		<br>
+		<div class="row">
+			<div class="col-lg-12  mb-3">
+
+				<MatButton Raised="true" type="submit" >บันทึก @complete</MatButton>
+				@{var txtLink="surveya1/"+@HC;}<MatButtonLink Href='@txtLink' Raised="true" Style="Default">ถัดไป</MatButtonLink>
+				
+				
+			</div>
+		</div>
+</EditForm>
+
+
+@code {
+
+	
+}
+
+ 
