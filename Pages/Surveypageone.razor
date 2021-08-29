@@ -242,12 +242,11 @@
 		</div>
 
 
-
-		<br>
+	<br>
 		<div class="row" style='border-style: dotted;border-width: 1px'>
 			<div class="col-lg-12  mb-3">
 				<label for="TEL">หมายเลขโทรศัพท์ (บ้าน/มือถือ) </label>
-				<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
+				<input type='text' id='TEL' name='TEL'  placeholder="--หมายเลขโทรศัพท์--" onKeyUp="autoTab(this,2)" onKeyPress="autoTab(this,2)" maxlength='12' @* class="form-control *@">
 			</div>
 		</div>
 
@@ -255,31 +254,29 @@
 		<div class="row" style='border-style: dotted;border-width: 1px'>
 			<div class="col-lg-12  mb-3">
 				<label for="NO1">จำนวนสมาชิก<font color='red'>ทั้งหมดในครัวเรือนตามทะเบียนบ้าน</font>  </label>
-				<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
+				<input type='text' name='NO1' id='NO1' size='5'  @bind-value="@recordSurveyProfile.NO1" placeholder="--จำนวนสมาชิกทั้งหมดในครัวเรือนตามทะเบียนบ้าน--"  class="form-control" required  />
 			</div>
 
 			<!--div class="col-lg-12  mb-3">
 				<label for="NO2">จำนวนสมาชิก<font color='red'>ทั้งหมดที่อาศัยอยู่จริง</font>ในครัวเรือน </label>
-				<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
+				<input type='text' name='NO2' id='NO2' size='5' placeholder="--จำนวนสมาชิกทั้งหมดที่อาศัยอยู่จริงในครัวเรือน--"  class="form-control" required  onKeyPress=" if (@*event.keyCode < 48 || event.keyCode>57){event.returnValue = false}"*@>
 			</div-->
 
 			<div class="col-lg-12  mb-3">
 				<label for="NO3">จำนวนสมาชิก<font color='red'>ที่อาศัยและมีชื่อในทะเบียนบ้าน</font> </label>
-			<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
+			<input type='text' name='NO3' id='NO3' size='5'  @bind-value="@recordSurveyProfile.NO3" placeholder="--จำนวนสมาชิกที่อาศัยและมีชื่อในทะเบียนบ้าน--" class="form-control" required   >
 			</div>
 			<input type='hidden' name='NO2'>
 			<input type='hidden' name='NO5'>
 
 			<div class="col-lg-12  mb-3">
 				<label for="NO4">จำนวนสมาชิก<font color='red'>ที่อาศัยแต่ไม่มี</font>ชื่อในทะเบียนบ้าน</label>
-			<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
+			<input type='text' name='NO4' id='NO4' size='5'  @bind-value="@recordSurveyProfile.NO4" placeholder="--จำนวนสมาชิกที่อาศัยแต่ไม่มีชื่อในทะเบียนบ้าน--" class="form-control" required   >
 			</div>
-
-			<!--div class="col-lg-12  mb-3">
-				<label for="NO55">จำนวนสมาชิกที่<font color='red'>ไม่ได้อาศัยแต่มีชื่อในทะเบียนบ้าน</font></label>
-			<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
-			</div-->
-		</div>
+</div>
+			
+		
+		
 		<br>
 		<div class="row" style='border-style: dotted;border-width: 1px'>
 			<div class="col-lg-12  mb-3">
