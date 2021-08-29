@@ -1,21 +1,21 @@
-@page "/datalist"
+﻿@page "/staff"
 @inject IJSRuntime JSRuntime
 @using System.Threading;
 
 
 
-<h3>���������˹�ҷ��  </h3>
+<h3>ข้อมูลเจ้าหน้าที่  </h3>
 
 <h1>@Count</h1>
 
-<button @onclick=@StartCountdown>�ѻഷ�к� </button>
+<button @onclick=@StartCountdown>อัปเดทระบบ </button>
 @*<input type="button" class="btn btn-primary" @onclick="synData" value="synData" />*@
 
 
 @*<input class="form-control"       bind="currentInputValue" />
-<button class="btn btn-secondary" onclick="Save">�ѹ�֡</button>
-<button class="btn btn-secondary" onclick="Read">��ҹ</button>
-<button class="btn btn-secondary" onclick="Delete">ź</button>*@
+<button class="btn btn-secondary" onclick="Save">บันทึก</button>
+<button class="btn btn-secondary" onclick="Read">อ่าน</button>
+<button class="btn btn-secondary" onclick="Delete">ลบ</button>*@
 
 @code {
     string currentInputValue;
