@@ -6,7 +6,9 @@
     <StartupObject></StartupObject>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
-
+<PropertyGroup>
+    <PublishTrimmed>true</PublishTrimmed>
+</PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="4.1.5" />
     <PackageReference Include="DnetIndexedDb" Version="2.3.1" />
