@@ -1,6 +1,6 @@
 {
-  "name": "LOANAPP",
-  "short_name": "LOANAPP",
+  "name": "LONPApp ",
+  "short_name": "LONPApp ",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

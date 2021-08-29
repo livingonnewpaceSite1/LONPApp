@@ -1477,8 +1477,34 @@ namespace FirstBlazorApp.Models
             public int? last_edit { get; set; }
             public int? create_time { get; set; }
             public int? create_survey { get; set; }
-        }
-        public class survey_staff
+        public string MM1 { get; set;}
+        public string PERSON_PREFIX { get; set;}
+        public string PERSON_NAME { get; set;}
+        public string PERSON_SNAME { get; set;}
+        public string PERSON_POPID { get; set;}
+        public string HOST_PREFIX { get; set;}
+        public string HOST_NAME { get; set;}
+        public string HOST_SNAME { get; set;}
+        public string HOST_POPID { get; set;}
+        public int? NO1 { get; set;}
+        public int? NO2 { get; set;}
+        public int? NO3 { get; set;}
+        public int? NO4 { get; set;}
+        public int? NO5 { get; set;}
+        public string SURVEYER_PREFIX { get; set;}
+        public string SURVEYER_NAME { get; set;}
+        public string SURVEYER_SNAME { get; set;}
+        public string SURVEYER_TEL { get; set;}
+        public string SURVEYER_DATE { get; set;}
+        public string SURVEYER_TIME { get; set;}
+        public string HOST_POPID1 { get; set;}
+        public string PERSON_POPID1 { get; set;}
+        public string HC1 { get; set;}
+        public string status { get; set;}
+
+
+    }
+    public class survey_staff
         {
             [IndexDbKey(AutoIncrement = true)]
             public string HC { get; set; }

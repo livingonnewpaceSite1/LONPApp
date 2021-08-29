@@ -30,6 +30,7 @@ namespace FirstBlazorApp.Pages
         {
             public survey_staff survey_staff { get; set; }
             public string HC { get; set; }
+            public int? id { get; set; }
             public string UserName { get; set; }
             public string nameProvince { get; set; }
         }
@@ -89,15 +90,22 @@ namespace FirstBlazorApp.Pages
             await DBContext.DeleteByKey<int?>("survey_profile", id);
             survey_profile_list = await DBContext.GetAll<survey_profile>("survey_profile");
             //var updateSurPro=await DBContext.GetByIndex<string, survey_profile>("survey_profile", "1", null, "hc", false);
-
+            var itemToRemove = tableListSurveys.Single(r => r.id == id);
+            tableListSurveys.Remove(itemToRemove);
+          
             StateHasChanged();
         }
-        private async Task EditEmp(int id)
+     
+        private async Task syndatabyHc(string hc)
         {
-            emp = await DBContext.GetById(id);
-            emp.Fullname = "dfdffd";
+            var emp=new Models.Employee()
+            {
+                Email = "ssss",
+                Fullname = "ssss",
+                MobileNumber =  "ssss"
+            };
+            await DBContext.Add(emp);
         }
-
         private async Task HandleValidSubmit(EditContext context)
         {
             displayValidationErrorMessages = true;
@@ -178,7 +186,8 @@ namespace FirstBlazorApp.Pages
                     survey_staff = item.st,
                     UserName = item.st.staff,
                     nameProvince =provinceName,
-                    HC = item.sp.HC
+                    HC = item.sp.HC,
+                    id=item.sp.id
                 }); 
             }
 

@@ -199,27 +199,141 @@
 		<br>
 		<div class="row" style='border-style: dotted;border-width: 1px'>
 			<div class="col-lg-12  mb-3">
-				<label for="HHM">จำนวนสมาชิกทั้งหมดในครัวเรือนตามทะเบียนบ้าน  </label>
-				<input type='text' name='HHM' id='HHM'  @bind-value="@recordSurveyProfile.HHM" size='5' placeholder="--จำนวนสมาชิกทั้งหมดในครัวเรือนตามทะเบียนบ้าน--"  class="form-control" required>
+				<label for="PERSON_NAME">ชื่อผู้ให้ข้อมูล <font color='red'>(ต้องเป็นบุคคลที่อาศัยอยู่ในครัวเรือน หรือได้รับความยินยอมจากบุคคลในครัวเรือนให้เป็นผู้ให้ข้อมูล)</font></label>
+
+				<input type='button' value='reset' 
+					onclick="
+						document.getElementById('PREFIX1').checked=false;
+						document.getElementById('PREFIX2').checked=false;
+						document.getElementById('PREFIX3').checked=false;
+						document.getElementById('PREFIX4').checked=false;
+				">
+<MatRadioGroup @bind-Value="@recordSurveyProfile.PERSON_PREFIX" TValue="string">
+				<div class="custom-control custom-radio">
+					<MatRadioButton Value="@("1")" TValue="string"   >นาย</MatRadioButton>
+@*<MatRadioGroup @bind-Value="@recordSurveyProfile.PERSON_PREFIX" TValue="string">*@
+				</div>
+				<div class="custom-control custom-radio">
+					<MatRadioButton Value="@("2")" TValue="string"   >นาง</MatRadioButton>
+@*<MatRadioGroup @bind-Value="@recordSurveyProfile.PERSON_PREFIX" TValue="string">*@
+				</div>
+				<div class="custom-control custom-radio">
+					<MatRadioButton Value="@("3")" TValue="string"   >นางสาว</MatRadioButton>
+@*<MatRadioGroup @bind-Value="@recordSurveyProfile.PERSON_PREFIX" TValue="string">*@
+				</div>
+				<!--div class="custom-control custom-radio">
+					<MatRadioButton Value="@("4")" TValue="string"   >อื่น ๆ</MatRadioButton>
+@*<MatRadioGroup @bind-Value="@recordSurveyProfile.PERSON_PREFIX" TValue="string">*@
+				</div--></MatRadioGroup>
+			</div>
+
+			<div class="col-lg-12  mb-3">
+				<label for="PERSON_NAME">ชื่อผู้ให้ข้อมูล <font color='red'>(ต้องเป็นบุคคลที่อาศัยอยู่ในครัวเรือน หรือได้รับความยินยอมจากบุคคลในครัวเรือนให้เป็นผู้ให้ข้อมูล)</font></label>
+				<input type='text' name='PERSON_NAME'  placeholder="--ชื่อผู้ให้ข้อมูล--" class="form-control"  @bind-value="@recordSurveyProfile.PERSON_NAME">
+			</div>
+			<div class="col-lg-12  mb-3">
+				<label for="PERSON_SNAME">นามสกุลผู้ให้ข้อมูล <font color='red'>(ต้องเป็นบุคคลที่อาศัยอยู่ในครัวเรือน หรือได้รับความยินยอมจากบุคคลในครัวเรือนให้เป็นผู้ให้ข้อมูล)</font></label>
+				<input type='text' name='PERSON_SNAME'  placeholder="--นามสกุลผู้ให้ข้อมูล--" class="form-control"  @bind-value="@recordSurveyProfile.PERSON_SNAME">
+			</div>
+			<div class="col-lg-12  mb-3">
+				<label for="PERSON_POPID">หมายเลขบัตรประจำตัวประชาชน ของผู้ให้ข้อมูล </label>
+				<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
+			</div>
+		</div>
+
+
+
+		<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label for="TEL">หมายเลขโทรศัพท์ (บ้าน/มือถือ) </label>
+				<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
 			</div>
 		</div>
 
 		<br>
 		<div class="row" style='border-style: dotted;border-width: 1px'>
 			<div class="col-lg-12  mb-3">
-				<label for="PPP">จำนวนคนที่อาศัยอยู่จริงตามทะเบียนบ้าน </label>
-			<input type='text' name='PPP' id='PPP'  @bind-value="@recordSurveyProfile.PPP" size='5' placeholder="--จำนวนคนที่อาศัยอยู่จริงตามทะเบียนบ้าน--" class="form-control" required>
+				<label for="NO1">จำนวนสมาชิก<font color='red'>ทั้งหมดในครัวเรือนตามทะเบียนบ้าน</font>  </label>
+				<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
 			</div>
-		</div>
 
+			<!--div class="col-lg-12  mb-3">
+				<label for="NO2">จำนวนสมาชิก<font color='red'>ทั้งหมดที่อาศัยอยู่จริง</font>ในครัวเรือน </label>
+				<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
+			</div-->
+
+			<div class="col-lg-12  mb-3">
+				<label for="NO3">จำนวนสมาชิก<font color='red'>ที่อาศัยและมีชื่อในทะเบียนบ้าน</font> </label>
+			<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
+			</div>
+			<input type='hidden' name='NO2'>
+			<input type='hidden' name='NO5'>
+
+			<div class="col-lg-12  mb-3">
+				<label for="NO4">จำนวนสมาชิก<font color='red'>ที่อาศัยแต่ไม่มี</font>ชื่อในทะเบียนบ้าน</label>
+			<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
+			</div>
+
+			<!--div class="col-lg-12  mb-3">
+				<label for="NO55">จำนวนสมาชิกที่<font color='red'>ไม่ได้อาศัยแต่มีชื่อในทะเบียนบ้าน</font></label>
+			<input type='text' name='PERSON_POPID' id='PERSON_POPID'  placeholder="--หมายเลขบัตรประจำตัวประชาชน--" onkeyup="autoTab(this,1)" onkeypress="autoTab(this,1)" maxlength='17' class="form-control"  @bind-value="@recordSurveyProfile.PERSON_POPID">
+			</div-->
+		</div>
 		<br>
 		<div class="row" style='border-style: dotted;border-width: 1px'>
 			<div class="col-lg-12  mb-3">
-				<label for="PP">จำนวนคนที่อาศัยอยู่จริงแต่<font color='red'>ไม่มี</font>ชื่อในทะเบียนบ้าน </label>
-			<input type='text' name='PP' id='PP'  @bind-value="@recordSurveyProfile.PP" size='5' placeholder="--จำนวนคนที่อาศัยอยู่แต่ไม่มีชื่อในทะเบียนบ้าน--" class="form-control" required>
+				<label for="HOST_NAME">ชื่อผู้ทำแบบสำรวจ </label>
+				<input type='button' value='reset' 
+					onclick="
+						document.getElementById('PREFIX_SURVEYER1').checked=false;
+						document.getElementById('PREFIX_SURVEYER2').checked=false;
+						document.getElementById('PREFIX_SURVEYER3').checked=false;
+						document.getElementById('PREFIX_SURVEYER4').checked=false;
+				">
+<MatRadioGroup @bind-Value="@recordSurveyProfile.SURVEYER_PREFIX" TValue="string">
+				<div class="custom-control custom-radio">
+					<MatRadioButton Value="@("1")" TValue="string"   >นาย</MatRadioButton>
+@*<MatRadioGroup @bind-Value="@recordSurveyProfile.SURVEYER_PREFIX" TValue="string">*@
+				</div>
+				<div class="custom-control custom-radio">
+					<MatRadioButton Value="@("2")" TValue="string"   >นาง</MatRadioButton>
+@*<MatRadioGroup @bind-Value="@recordSurveyProfile.SURVEYER_PREFIX" TValue="string">*@
+				</div>
+				<div class="custom-control custom-radio">
+					<MatRadioButton Value="@("3")" TValue="string"   >นางสาว</MatRadioButton>
+@*<MatRadioGroup @bind-Value="@recordSurveyProfile.SURVEYER_PREFIX" TValue="string">*@
+				</div>
+				<!--div class="custom-control custom-radio">
+					<MatRadioButton Value="@("4")" TValue="string"   >อื่น ๆ</MatRadioButton>
+@*<MatRadioGroup @bind-Value="@recordSurveyProfile.SURVEYER_PREFIX" TValue="string">*@
+					<label class="custom-control-label" for="PREFIX_SURVEYER4"> อื่น ๆ  </label>
+				</div--></MatRadioGroup>	
+			</div>			
+
+		<div class="col-lg-12  mb-3">
+				<label for="SURVEYER_NAME">ชื่อผู้ทำแบบสำรวจ </label>
+				<input type='text' name='SURVEYER_NAME' id='SURVEYER_NAME' placeholder="--ชื่อผู้ทำแบบสำรวจ--" class="form-control"  @bind-value="@recordSurveyProfile.SURVEYER_NAME">
+			</div>
+			<div class="col-lg-12  mb-3">
+				<label for="SURVEYER_SNAME">นามสกุลผู้ทำแบบสำรวจ </label>
+				<input type='text' name='SURVEYER_SNAME' id='SURVEYER_SNAME' placeholder="--นามสกุลผู้ทำแบบสำรวจ--" class="form-control"  @bind-value="@recordSurveyProfile.SURVEYER_SNAME">
+			</div>
+			<div class="col-lg-12  mb-3">
+				<label for="SURVEYER_TEL">เบอร์โทรศัพท์ ผู้ทำแบบสำรวจ </label>
+				<input type='text' name='SURVEYER_SNAME' id='SURVEYER_SNAME' placeholder="--นามสกุลผู้ทำแบบสำรวจ--" class="form-control"  @bind-value="@recordSurveyProfile.SURVEYER_SNAME">
+			</div>
+
+			<div class="col-lg-12  mb-3">
+				<label for="SURVEYER_SNAME">วันที่ไปสำรวจ </label>
+				<input type='text' id="SURVEYER_DATE" class="datepicker form-control" placeholder="--วันที่ไปสำรวจ--"  name='SURVEYER_DATE' @bind-value="@recordSurveyProfile.SURVEYER_DATE">
+			</div>
+			<div class="col-lg-12  mb-3">
+				<label for="SURVEYER_POPID">เวลาที่ไปสำรวจ</label>
+				<input type='text' name='SURVEYER_TIME' id='SURVEYER_TIME'  placeholder="--เวลาที่ไปสำรวจ HH:MM เช่น 13:30--" maxlength='5' class="form-control"  @bind-value="@recordSurveyProfile.SURVEYER_TIME">
 			</div>
 		</div>
-
+		<br>
 		<br>
 		<div class="row" style='border-style: dotted;border-width: 1px'>
 			<div class="col-lg-12  mb-3">

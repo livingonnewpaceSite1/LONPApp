@@ -315,8 +315,8 @@ while($row=$result->fetch_object()){
 				<td>@UnixTimeStampToDateTime(item.survey_staff.ch5_st)</td>
 				<td>@UnixTimeStampToDateTime(item.survey_staff.ch5_sp)</td>
 				 <td>
-                        <input type="button" class="btn btn-danger btn-sm"  value="ลบ" />
-                         <input type="button" class="btn btn-primary btn-sm" value="ส่งข้อมูล" />
+                        <input type="button" class="btn btn-danger btn-sm"  @onclick="@(e => DeleteSurvey_profile(item.id))" value="ลบ" />
+                         <input type="button" class="btn btn-primary btn-sm" @onclick="@(e => syndatabyHc(item.HC))" value="ส่งข้อมูล" />
 						 </td>
 			</tr>	
 

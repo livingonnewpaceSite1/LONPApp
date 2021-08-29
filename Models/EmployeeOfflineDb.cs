@@ -232,15 +232,13 @@ namespace FirstBlazorApp.Models
         }
         public async Task Delete(int id)
         {
-            //   var openResult = await this.OpenIndexedDb();
-            List<Employee> employees = await GetAll<Employee>("Employee");
             Employee emp = await GetByKey<int, Employee>("Employee", id);
-           var test=new TStore<district>();
-        var resultx = "";
+        
+     
             if (emp.Id > 0)
             {
 
-                resultx = await this.DeleteByKey<int>("Employee", emp.Id);
+               await this.DeleteByKey<int>("Employee", emp.Id);
             }
 
 
