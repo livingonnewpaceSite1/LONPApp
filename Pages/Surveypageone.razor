@@ -246,7 +246,7 @@
 		<div class="row" style='border-style: dotted;border-width: 1px'>
 			<div class="col-lg-12  mb-3">
 				<label for="TEL">หมายเลขโทรศัพท์ (บ้าน/มือถือ) </label>
-				<input type='text' id='TEL' name='TEL'  placeholder="--หมายเลขโทรศัพท์--" onKeyUp="autoTab(this,2)" onKeyPress="autoTab(this,2)" maxlength='12' @* class="form-control *@">
+				<input type='text' id='TEL' name='TEL'  @bind-value="@recordSurveyProfile.TEL"  placeholder="--หมายเลขโทรศัพท์--" onKeyUp="autoTab(this,2)" onKeyPress="autoTab(this,2)" maxlength='12' >
 			</div>
 		</div>
 

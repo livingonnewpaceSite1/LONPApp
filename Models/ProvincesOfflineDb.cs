@@ -1432,7 +1432,6 @@ namespace FirstBlazorApp.Models
         }
         public class survey_f1
         {
-            [IndexDbKey(AutoIncrement = true)]
             public string r1 { get; set; }
             public string r2 { get; set; }
             public string r3 { get; set; }
@@ -1442,6 +1441,7 @@ namespace FirstBlazorApp.Models
             public string r7 { get; set; }
             public string r8 { get; set; }
             public string r9 { get; set; }
+            [IndexDbKey(AutoIncrement = true)]
             public string HC { get; set; }
             public string survey_year { get; set; }
             public string survey_no { get; set; }
@@ -1503,6 +1503,47 @@ namespace FirstBlazorApp.Models
         public string status { get; set;}
 
 
+    }
+    public class survey_f
+    {
+        [IndexDbKey(AutoIncrement = true)]
+        public string HC { get; set; }
+        public string survey_year  { get; set; }
+        public string survey_no  { get; set; }
+        public string f2 { get; set; }
+        public string f1_1 { get; set; }
+        public string f1_2 { get; set; }
+        public string f1_2_1 { get; set; }
+        public string f1_3 { get; set; }
+        public string f1_3_1 { get; set; }
+        public string f2_1 { get; set; }
+        public string f2_2 { get; set; }
+        public string f2_2_1 { get; set; }
+        public string f2_2_2 { get; set; }
+        public string f2_2_3 { get; set; }
+        public string f2_2_4 { get; set; }
+        public string f2_2_5 { get; set; }
+        public string f2_2_5_1 { get; set; }
+        public string f2_3_1 { get; set; }
+        public string f2_3_2 { get; set; }
+        public string f2_3_3 { get; set; }
+        public string f2_3_4 { get; set; }
+        public string f2_3_5 { get; set; }
+        public string f2_3_6 { get; set; }
+        public string f2_3_7 { get; set; }
+        public string f2_3_8 { get; set; }
+        public string f2_3_9 { get; set; }
+        public string f2_3_10 { get; set; }
+        public string f2_3_10_1 { get; set; }
+        public string f2_4_1 { get; set; }
+        public string f2_4_2 { get; set; }
+        public string f2_4_3 { get; set; }
+        public string f2_4_4 { get; set; }
+        public string f2_4_5 { get; set; }
+        public string f2_4_6 { get; set; }
+        public string f2_4_7 { get; set; }
+        public string f2_4_8 { get; set; }
+        public string f2_4_8_1 { get; set; }
     }
     public class survey_staff
         {

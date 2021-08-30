@@ -16,7 +16,7 @@ namespace FirstBlazorApp.Models
         public EmployeeOfflineDb()
         {
             Name = "EmployeeData";
-            Version = 62;
+            Version = 63;
             Stores = _stores;
         }
         private IndexedDbStore _tableFieldStore => new TStore<Employee>();
@@ -90,6 +90,7 @@ namespace FirstBlazorApp.Models
         private IndexedDbStore _tableFieldStore69 => new TStore<users>();
         private IndexedDbStore _tableFieldStore70 => new TStore<volunteer>();
 
+        private IndexedDbStore _tableFieldStore72 => new TStore<survey_f>();
         private List<IndexedDbStore> _stores => new List<IndexedDbStore>
         {
             _tableFieldStore,_tableFieldStore2,_tableFieldStore4,_tableFieldStore3,_tableFieldStore5,
@@ -103,7 +104,7 @@ namespace FirstBlazorApp.Models
             _tableFieldStore48,_tableFieldStore49,_tableFieldStore50,_tableFieldStore51,_tableFieldStore52,_tableFieldStore53,
             _tableFieldStore54,_tableFieldStore55,_tableFieldStore56,_tableFieldStore57,_tableFieldStore58,_tableFieldStore59,
             _tableFieldStore60,_tableFieldStore62,_tableFieldStore63,_tableFieldStore64,_tableFieldStore65,
-            _tableFieldStore66,_tableFieldStore67,_tableFieldStore68,_tableFieldStore69,_tableFieldStore70,_tableFieldStore71
+            _tableFieldStore66,_tableFieldStore67,_tableFieldStore68,_tableFieldStore69,_tableFieldStore70,_tableFieldStore71,_tableFieldStore72
 
         };
     

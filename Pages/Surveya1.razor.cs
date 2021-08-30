@@ -44,8 +44,8 @@ string complete = "";
 
 				var getListByHc=getAllSurveya1.Where(x=>x.HC.Contains(HC)).ToList();	
 				var surProFirst = survey_Profiles.First();
-				if (getListByHc.Count < Convert.ToInt32(surProFirst.HHM) + Convert.ToInt32(surProFirst.PP))
-					for (int i = 1; i <= Convert.ToInt32(surProFirst.HHM) + Convert.ToInt32(surProFirst.PP); i++)
+				if (getListByHc.Count < Convert.ToInt32(surProFirst.NO1) + Convert.ToInt32(surProFirst.NO4))
+					for (int i = 1; i <= Convert.ToInt32(surProFirst.NO1) + Convert.ToInt32(surProFirst.NO4); i++)
 					{
 						if (getAllSurveya1.Count != 0)
 						{
