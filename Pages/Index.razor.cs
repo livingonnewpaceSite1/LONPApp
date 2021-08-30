@@ -96,15 +96,10 @@ namespace FirstBlazorApp.Pages
             StateHasChanged();
         }
      
-        private async Task syndatabyHc(string hc)
+        private async Task syndatabyHc(int? id)
         {
-            var emp=new Models.Employee()
-            {
-                Email = "ssss",
-                Fullname = "ssss",
-                MobileNumber =  "ssss"
-            };
-            await DBContext.Add(emp);
+     
+            await DBContext.toServerByHc(id);
         }
         private async Task HandleValidSubmit(EditContext context)
         {

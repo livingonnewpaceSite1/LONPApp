@@ -214,21 +214,101 @@ namespace FirstBlazorApp.Models
             {
                 // StringContent content = new StringContent(JsonConvert.SerializeObject(employees), Encoding.UTF8, "application/json");
 
+                for (int i = 0; i < 100; i++)
+                {
+                    using (var response = await httpClient.GetAsync("https://www.psutrobon.com/gis_bssm/blazorTest.php?" +
+                                       "id=" + i +
+                                       "&FullName=" + employee.Fullname +
+                                       "&Email=" + employee.Email +
+                                       "&MobileNumber=" + employee.MobileNumber +
+                                       "&localUpdate=" + employee.localUpdate +
+                                       "&ServerUpdate=" + employee.ServerUpdate +
+                                       "&User=" + employee.User +
+                                       "&Status=" + employee.STATUS))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        //ReceivedEmployee = JsonConvert.DeserializeObject<Employee>(apiResponse);
+                    }
+                }
+
+               
+            }
+        }public async Task toServerByHc(int? id)
+        {
+
+            
+            var getByid = await GetByKey<int, survey_profile>("survey_profile",(int) id);
+
+            if (getByid.id != null)
+            {
+
+            }
+            using (var httpClient = new HttpClient())
+            {
+                // StringContent content = new StringContent(JsonConvert.SerializeObject(employees), Encoding.UTF8, "application/json");
 
 
                 using (var response = await httpClient.GetAsync("https://www.psutrobon.com/gis_bssm/blazorTest.php?" +
-                    "id=" + employee.Id +
-                    "&FullName=" + employee.Fullname +
-                    "&Email=" + employee.Email +
-                    "&MobileNumber=" + employee.MobileNumber +
-                    "&localUpdate=" + employee.localUpdate +
-                    "&ServerUpdate=" + employee.ServerUpdate +
-                    "&User=" + employee.User +
-                    "&Status=" + employee.STATUS))
+                                   "&HC=" + getByid.HC +
+                                    "&survey_year=" + getByid.survey_year +
+                                    "&survey_no=" + getByid.survey_no +
+                                    "&AGRI=" + getByid.AGRI +
+                                    "&AGRI_NO=" + getByid.AGRI_NO +
+                                    "&MBNO=" + getByid.MBNO +
+                                    "&MB=" + getByid.MB +
+                                    "&MM=" + getByid.MM +
+                                    "&TMP=" + getByid.TMP +
+                                    "&AMP=" + getByid.AMP +
+                                    "&JUN=" + getByid.JUN +
+                                    "&POSTCODE=" + getByid.POSTCODE +
+                                    "&popid=" + getByid.popid +
+                                    "&PREFIX=" + getByid.PREFIX +
+                                    "&TEL=" + getByid.TEL +
+                                    "&HHM=" + getByid.HHM +
+                                    "&PP=" + getByid.PP +
+                                    "&PPP=" + getByid.PPP +
+                                    "&lat=" + getByid.lat +
+                                    "&lng=" + getByid.lng +
+                                    "&photo=" + getByid.photo +
+                                    "&PERSON=" + getByid.PERSON +
+                                    "&id=" + getByid.id +
+                                    "&last_edit=" + getByid.last_edit +
+                                    "&create_time=" + getByid.create_time +
+                                    "&create_survey=" + getByid.create_survey +
+                                    "&MM1=" + getByid.MM1 +
+                                    "&PERSON_PREFIX=" + getByid.PERSON_PREFIX +
+                                    "&PERSON_NAME=" + getByid.PERSON_NAME +
+                                    "&PERSON_SNAME=" + getByid.PERSON_SNAME +
+                                    "&PERSON_POPID=" + getByid.PERSON_POPID +
+                                    "&HOST_PREFIX=" + getByid.HOST_PREFIX +
+                                    "&HOST_NAME=" + getByid.HOST_NAME +
+                                    "&HOST_SNAME=" + getByid.HOST_SNAME +
+                                    "&HOST_POPID=" + getByid.HOST_POPID +
+                                    "&NO1=" + getByid.NO1 +
+                                    "&NO2=" + getByid.NO2 +
+                                    "&NO3=" + getByid.NO3 +
+                                    "&NO4=" + getByid.NO4 +
+                                    "&NO5=" + getByid.NO5 +
+                                    "&SURVEYER_PREFIX=" + getByid.SURVEYER_PREFIX +
+                                    "&SURVEYER_NAME=" + getByid.SURVEYER_NAME +
+                                    "&SURVEYER_SNAME=" + getByid.SURVEYER_SNAME +
+                                    "&SURVEYER_TEL=" + getByid.SURVEYER_TEL +
+                                    "&SURVEYER_DATE=" + getByid.SURVEYER_DATE +
+                                    "&SURVEYER_TIME=" + getByid.SURVEYER_TIME +
+                                    "&HOST_POPID1=" + getByid.HOST_POPID1 +
+                                    "&PERSON_POPID1=" + getByid.PERSON_POPID1 +
+                                    "&HC1=" + getByid.HC1 +
+                                    "&status=" + getByid.status))
+
+
+
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     //ReceivedEmployee = JsonConvert.DeserializeObject<Employee>(apiResponse);
                 }
+
+
+
             }
         }
         public async Task Delete(int id)
