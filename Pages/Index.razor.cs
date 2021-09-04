@@ -9,6 +9,11 @@ using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using static FirstBlazorApp.Pages.Surveypageone;
+using MatBlazor;
+using System.IO;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using DnetIndexedDb;
 
 namespace FirstBlazorApp.Pages
 {
@@ -31,11 +36,133 @@ namespace FirstBlazorApp.Pages
             public survey_staff survey_staff { get; set; }
             public string HC { get; set; }
             public int? id { get; set; }
+            public string status{ get; set; }
             public string UserName { get; set; }
             public string nameProvince { get; set; }
+            public bool spinning { get; set; }
+            public int index { get; set; }
+
         }
         List<tableListSurvey> tableListSurveys= new List<tableListSurvey>();
-        
+
+        IList<string> imageDataUrls = new List<string>();
+        async Task OnInputFileChange(InputFileChangeEventArgs e)
+        {
+            await DBContext.OpenIndexedDb();
+            
+            var imageFiles = e.GetMultipleFiles();
+            var format = "image/png";
+            foreach (var imageFile in imageFiles)
+            {
+                var resizedīmageFile = await imageFile.RequestImageFileAsync(format, 100, 100);
+                var buffer = new byte[resizedīmageFile.Size];
+                await resizedīmageFile.OpenReadStream().ReadAsync(buffer);
+                var imageDataurl = $"data:{format}; base64, {Convert.ToBase64String(buffer)}";
+                imageDataUrls.Add(imageDataurl);
+
+            }
+        }
+            string currentCount = "";
+        bool spinning = false;
+      
+        //******************* File content*********************
+        string fileContent;
+
+        async Task FilesReadyForContent(IMatFileUploadEntry[] files)
+        {
+            try
+            {
+                var file = files.FirstOrDefault();
+                if (file == null)
+                {
+                    return;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    var sw = Stopwatch.StartNew();
+                    await file.WriteToStreamAsync(stream);
+                    sw.Stop();
+                    if (stream.Length > 1024 * 1024)
+                    {
+                        fileContent = "";
+                        fileContent += $"Name:\t{file.Name}\r\n";
+                        fileContent += $"Type:\t{file.Type}\r\n";
+                        fileContent += $"LastModified:\t{file.LastModified}\r\n";
+                        fileContent += $"Size:\t{file.Size}\r\n";
+                        fileContent += $"Time:\t{sw.Elapsed}\r\n";
+                        fileContent += $"Speed:\t{(stream.Length / sw.Elapsed.TotalSeconds):N0}  b/s\r\n";
+                    }
+                    else
+                    {
+                        stream.Seek(0, SeekOrigin.Begin);
+                        using (var reader = new StreamReader(stream))
+                        {
+                            fileContent = await reader.ReadToEndAsync();
+                        }
+                    }
+                }
+            }
+
+            catch (Exception e)
+            {
+                fileContent = $"Error:\r\n{e.Message}\r\n{e.StackTrace}";
+            }
+            finally
+            {
+                await InvokeAsync(StateHasChanged);
+            }
+        }
+        //******************* loading *********************
+        private void DeleteData()
+        {
+             DBContext2.OpenIndexedDb();
+             DBContext2.DeleteIndexedDb();
+        }
+        private async Task AsyncLongFunc()
+        {
+
+            
+            ch2_gis_2 sampleCh2 = new ch2_gis_2();
+            sampleCh2.HC = configSurvey.randomNum();
+            await DBContext2.OpenIndexedDb();
+
+            await DBContext2.AddItems<ch2_gis_2>("ch2_gis_2", new List<ch2_gis_2>(){
+                sampleCh2
+            });
+
+            var test = await DBContext2.GetAll<ch2_gis_2>("ch2_gis_2");
+            currentCount = test.Count.ToString();
+            spinning = true;
+                // flushing changes. The trick!!
+            LongFunc();               // non-async code
+           // currentCount++;
+            spinning = false;
+
+            await Task.CompletedTask;
+
+
+
+            StateHasChanged();
+        }
+        private async Task syndatabyHc(int? id,int index)
+        {
+
+            tableListSurveys.ElementAt(index).spinning = true;
+            await Task.Delay(1000);
+            await DBContext. toServerByHc(id);
+            tableListSurveys.ElementAt(index).spinning = false;
+            await Task.CompletedTask;
+            await InvokeAsync(StateHasChanged);
+        }
+      
+
+      async Task LongFunc()
+        {
+             Task.Delay(10000).Wait();
+        }
+
+
 
         private List<Models.survey_profile> survey_profile_list_by_hc = new List<survey_profile>();
         private List<survey_profile> survey_profiles = new List<survey_profile>();
@@ -96,11 +223,6 @@ namespace FirstBlazorApp.Pages
             StateHasChanged();
         }
      
-        private async Task syndatabyHc(int? id)
-        {
-     
-            await DBContext.toServerByHc(id);
-        }
         private async Task HandleValidSubmit(EditContext context)
         {
             displayValidationErrorMessages = true;
@@ -110,6 +232,7 @@ namespace FirstBlazorApp.Pages
                 Email = emp.Email,
                 Fullname = emp.Fullname,
                 MobileNumber = emp.MobileNumber
+
 
             });
             emp.Fullname = "";
@@ -139,9 +262,30 @@ namespace FirstBlazorApp.Pages
             var listByhc = listProfileStaff.ToList();
             //listByhc.ElementAt(0).sp.HC;
         }
+
+        async void runBuild()
+        {
+            var builder = WebAssemblyHostBuilder.CreateDefault();
+            builder.Services.AddIndexedDbDatabase<EmployeeContext2>(o => { o.UseDatabase(new EmployeeOfflineDb2()); });
+
+            await builder.Build().RunAsync();
+        }
         protected override async Task OnInitializedAsync()
         {
             var openResult = await DBContext.OpenIndexedDb();
+             await DBContext2.OpenIndexedDb();
+            var test = await DBContext2.GetAll<ch2_gis_2>("ch2_gis_2");
+            currentCount = test.Count.ToString();
+            //await DBContext2.OpenIndexedDb();
+            // ch2_gis sampleCh2 = new ch2_gis();
+            // sampleCh2.HC = "dfdfsssdghghdsdddddddddddddddfssssd";
+            // await DBContext2.AddItems<ch2_gis>("ch2_gis", new List<ch2_gis>(){
+            //     sampleCh2
+            // }) ;
+            // await DBContext2.DeleteIndexedDb();
+
+
+
             survey_profile_list = (await DBContext.GetAll<survey_profile>("survey_profile")).OrderBy(x => x.create_survey).ToList();
 
             employees = await DBContext.GetAll();
@@ -149,6 +293,7 @@ namespace FirstBlazorApp.Pages
             var getProvince = await DBContext.GetAll<province>("province");
             if (getProvince.Count == 0)
             {
+
                 await DBContext.loadDbFromServer();
             }
 
@@ -164,6 +309,7 @@ namespace FirstBlazorApp.Pages
                                    join st in survey_staffs  on sp.HC equals st.HC
                                    select new { sp, st };
             var listByhc = listProfileStaff.ToList();
+            int index = 0;
             foreach (var item in listByhc.OrderBy(x=>x.sp.create_survey))
             {
                 var provinceName = "";
@@ -182,11 +328,17 @@ namespace FirstBlazorApp.Pages
                     UserName = item.st.staff,
                     nameProvince =provinceName,
                     HC = item.sp.HC,
-                    id=item.sp.id
-                }); 
+                    id=item.sp.id,
+                    status=item.sp.status,
+                    spinning=false,
+                    index=index
+                    
+                });
+                index++;
             }
 
             num_total =survey_profile_list.Count();
+
 
 
         }
@@ -210,3 +362,4 @@ namespace FirstBlazorApp.Pages
         private string AddResult = string.Empty;
     }
 }
+

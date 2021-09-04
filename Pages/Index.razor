@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject Models.EmployeeContext DBContext
+@inject Models.EmployeeContext2 DBContext2
 
 
 
@@ -267,9 +268,10 @@ echo"
 	<td align='center'>ทำเสร็จ</td>
 	<td align='center'></td>
 </tr>
+
 @foreach (var item in tableListSurveys)
 {
-	
+
 
 @*";
 @
@@ -316,11 +318,22 @@ while($row=$result->fetch_object()){
 				<td>@UnixTimeStampToDateTime(item.survey_staff.ch5_sp)</td>
 				 <td>
                         <input type="button" class="btn btn-danger btn-sm"  @onclick="@(e => DeleteSurvey_profile(item.id))" value="ลบ" />
-                         <input type="button" class="btn btn-primary btn-sm" @onclick="@(e => syndatabyHc(item.id))" value="ส่งข้อมูล" />
+						@{
+							var isDisable = false;
+								if(!String.IsNullOrEmpty(item.status)){
+
+									isDisable= item.status.Equals("1")?true:false;
+								}
+
+
+								
+							}
+								<h2>@isDisable</h2>
+                         <input type="button"class="btn  @(item.spinning?"btn-dark":"btn-primary") "  @onclick="@(e => syndatabyHc(item.id,item.index))" value="ส่งข้อมูล" disabled=@isDisable />
 						 </td>
 			</tr>	
 
-@*	";
+@*	
 }
 
 echo"</table>";
@@ -350,15 +363,42 @@ echo"*@
 	</div>
 
 
+				<h1>Counter</h1>
+ 
+<p>Current count: 
+   @currentCount
+</p>
+ 
+<button class="btn btn-primary" 
+         @onclick="@runBuild">Click me</button>
+		 
+		 <button class="btn btn-primary" 
+         @onclick="@DeleteData">Click me</button>
+ 
+<button class="btn  @(spinning?"btn-dark":"btn-primary") " 
+        @onclick="@AsyncLongFunc">Click me Async</button>
 
 
+		<MatFileUpload OnChange="@FilesReadyForContent"></MatFileUpload>
+        <textarea style="width: 100%; max-height: 300px; height: 300px;">@fileContent</textarea>
 @*
 <form action='index.php?curr=list_staff1' method='POST' name='frm_select_page'>
 <br>
 *@
+<InputFile OnChange="OnInputFileChange" multiple></InputFile>
 
-
-
+<br />
+<div class="image-list">
+	<table class="table table-bordered">
+		<tr>
+			@foreach(var imageDataUrl in imageDataUrls){
+				<td>
+					<img src="@imageDataUrl"/>
+				</td>
+			}
+		</tr>
+	</table>
+</div>
 @*
 
 <div class=\"row\">

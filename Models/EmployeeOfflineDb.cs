@@ -129,8 +129,10 @@ namespace FirstBlazorApp.Models
         public string User { get; set; }
 
     }
-   
-    public class EmployeeContext : IndexedDbInterop
+
+
+    
+              public class EmployeeContext : IndexedDbInterop
     {
  
         public EmployeeContext(IJSRuntime jSRuntime, IndexedDbOptions<EmployeeContext> options) : base(jSRuntime, options) { }
@@ -304,6 +306,9 @@ namespace FirstBlazorApp.Models
 
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
+                    getByid.status = "1";
+                    await UpdateItems<survey_profile>("survey_profile", new List<survey_profile>() { getByid });
+
                     //ReceivedEmployee = JsonConvert.DeserializeObject<Employee>(apiResponse);
                 }
 

@@ -78,7 +78,7 @@ namespace FirstBlazorApp.Models
         public string TMP { get; set; }
         public string mm { get; set; }
         public string ch2_lat { get; set; }
-        public string ch2_lng { get; set; }
+        public string ch2_lng888 { get; set; }
         public string gis_lat { get; set; }
         public string gis_lng { get; set; }
         public string flag { get; set; }

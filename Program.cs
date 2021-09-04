@@ -22,6 +22,7 @@ namespace FirstBlazorApp
             builder.RootComponents.Add<App>("#app");
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddIndexedDbDatabase<EmployeeContext>(o => { o.UseDatabase(new EmployeeOfflineDb()); });
+            builder.Services.AddIndexedDbDatabase<EmployeeContext2>(o => { o.UseDatabase(new EmployeeOfflineDb2()); });
            builder.Services.AddMatBlazor();
             builder.Services.AddBlazoredLocalStorage();
             builder.Services.AddSingleton<CustomHttpClient>();
