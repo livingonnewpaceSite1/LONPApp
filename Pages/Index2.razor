@@ -1,120 +1,151 @@
 ﻿@page "/index2"
-@inject Models.EmployeeContext DBContext
+@page "/index2/{id}"
 
-@using FirstBlazorApp.Models
+
+@inject Models.EmployeeContext DBContext
+@inject Models.EmployeeContext2 DBContext2
+
 
 
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JSRuntime
-@*@inject IJSRuntime JSRuntime*@
-@*<h1>Local Storage!</h1>
 
-    <input class="form-control" @bind="currentInputValue" />
-    <button class="btn btn-secondary" @onclick="Save">Save</button>
-    <button class="btn btn-secondary" @onclick="Read">Read</button>
-    <button class="btn btn-secondary" @onclick="Delete">Delete</button>
-    <h1>Hello, Bassam</h1>
-    test deploy   id test*@
-<p>
-    <a href="addemp">Create New Employee..</a>
-</p>    @if (survey_profile_list != null)
+@*test deploy   id test<h1>Hello, Bassam</h1>*@
+<div>
+	<div class="container content">
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12">
+				<label><b>ระบบสารสนเทศ</b></label>
+				<label>โครงการพัฒนาระบบสนับสนุนการทำงานเชิงพื้นที่เพื่อการแก้ไขปัญหาความยากจนแบบเบ็ดเสร็จและแม่นยำ หน่วยบริหารและจัดการทุนด้านการพัฒนาระดับพื้นที่ (บพท.)</label>
+			</div>
+		</div>
+
+		<!--label><b><font color='red' size='6'>ประกาศ วันที่ 25 สิงหาคม 2563 เวลา 23.00-1.00 น. ทางระบบขอปิดระบบเพื่ออัพเดตระบบชั่วคราวครับ</font></b></label-->
+@**@
+
+		<label>&nbsp&nbsp;<a href='index.php?curr=list_edit'>แก้ไข / ลบ HC</a> | </label>
+		<label><a href='https://www.facebook.com/groups/livingonnewpace/' target="_blank">แจ้งปัญหา</a> | </label>
+		<label>&nbsp&nbsp;ถ้าไม่ใช้งานกรุณา <a href='logout.php'>Logout</a> |</label>
+		<label><a href='/gis' target="fberror">GIS</a></label>
+	</div>
+</div>
+
+
+
+<hr />
+@*********************************  แบบสำรวจของฉัน ***************************@
+@**@
+<br>
+@*
+*@
+<div class="container content">
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+<div class=\"row\">
+	<div class=\"col-lg-12\">
+		<form action='index.php?curr=list_staff1' method='POST'>
+			<input type='text' name='HC_search' id='HC_search' placeholder='--กรอก HC ที่ต้องการค้นหา----' class=\"form-control\" value='$HC_search'>
+			<input type='submit' value='ค้น' class=\"form-control\">
+		</form>
+	</div>
+</div>
+</div>
+</div>
+@**@
+<br>
+<div class="container content">
+<div class="row">
+	<div class="col-lg-12">
+		<label>ขณะนี้มีแบบสำรวจทั้งหมด&nbsp; @tableListSurveys.Count() &nbsp;ชุด&nbsp;&nbsp;<a href='index.php?curr=list_staff1&all=1'>ดูทั้งหมด</a></label>
+	</div>
+</div>
+</div>
+@*
+";
+*@
+
+<br>
+<div class="container content">
+<div class=\"row\">
+	<div class=\"col-lg-12\">
+		<label><a href='index.php?curr=list_staff1'>รายการทั้งหมด</a> ||</label>
+		<label><a href='index.php?curr=list_staff4'>รายการที่กรอกสมบูรณ์</a> ||</label>
+		<label><a href='index.php?curr=list_staff5'>รายการที่ไม่สมบูรณ์ (มีข้อมูลพื้นฐาน)</a> ||</label>
+		<label><a href='index.php?curr=list_staff3'>รายการที่ไม่มีข้อมูลพื้นฐาน</a></label>
+	</div>
+</div>
+</div>
+@**@
+<div class="container"> 
+<div class="row">
+	<div class="col-lg-12 col-md-12">
+<table border=1>
+<tr>
+	<td rowspan='2' align='center'>HC</td>
+	<td rowspan='2' align='center'>อาสาสมัคร</td>
+	<td rowspan='2' align='center'>จังหวัด</td>
+	<td colspan='2' align='center'>ตอนที่ 1</td>
+	<td colspan='2' align='center'>ตอนที่ 2</td>
+	<td colspan='2' align='center'>ตอนที่ 3</td>
+	<td colspan='2' align='center'>ตอนที่ 4</td>
+	<td colspan='2' align='center'>ตอนที่ 5</td>
+	<td  ></td>
+</tr>
+
+<tr>
+	<td align='center'>เริ่มทำ</td>
+	<td align='center'>ทำเสร็จ</td>
+	<td align='center'>เริ่มทำ</td>
+	<td align='center'>ทำเสร็จ</td>
+	<td align='center'>เริ่มทำ</td>
+	<td align='center'>ทำเสร็จ</td>
+	<td align='center'>เริ่มทำ</td>
+	<td align='center'>ทำเสร็จ</td>
+	<td align='center'>เริ่มทำ</td>
+	<td align='center'>ทำเสร็จ</td>
+	<td align='center'></td>
+</tr>
+
+@foreach (var item in tableListSurveys)
 {
-    <div class="row">
-        <div class="col-md-12">
-     <table class="table-bordered">
-        <thead>
-            <tr>
-                    <th>HC</th>
-                    <th>survey_year</th>
-                    <th>survey_no</th>
-                    <th>AGRI</th>
-                    <th>AGRI_NO</th>
-                    <th>MBNO</th>
-                    <th>MB</th>
-                    <th>MM</th>
-                    <th>TMP</th>
-                    <th>AMP</th>
-                    <th>JUN</th>
-                    <th>POSTCODE</th>
-                    <th>PERSON</th>
-                    <th>popid</th>
-                    <th>PREFIX</th>
-                    <th>TEL</th>
-                    <th>HHM</th>
-                    <th>PP</th>
-                    <th>PPP</th> 
-            </tr>
-        </thead>
-        <tbody>
-            <Virtualize Context="survey_profile" Items="@survey_profile_list">
-                <tr>
-                    <td>@survey_profile.HC</td>
-                    <td>@survey_profile.survey_year</td>
-                    <td>@survey_profile.survey_no</td>
-                    <td>@survey_profile.AGRI</td>
-                    <td>@survey_profile.AGRI_NO</td>
-                    <td>@survey_profile.MBNO</td>
-                    <td>@survey_profile.MB</td>
-                    <td>@survey_profile.MM</td>
-                    <td>@survey_profile.TMP</td>
-                    <td>@survey_profile.AMP</td>
-                    <td>@survey_profile.JUN</td>
-                    <td>@survey_profile.POSTCODE</td>
-                    <td>@survey_profile.PERSON</td>
-                    <td>@survey_profile.popid</td>
-                    <td>@survey_profile.PREFIX</td>
-                    <td>@survey_profile.TEL</td>
-                    <td>@survey_profile.HHM</td>
-                    <td>@survey_profile.PP</td>
-                    <td>@survey_profile.PPP</td> 
-                
-                    <td>
-                        <input type="button" class="btn btn-danger" @onclick="@(e => DeleteSurvey_profile(survey_profile.HC))" value="Delete" />
-                        <a href='editemployee/@survey_profile.HC' class="btn btn-block">Edit</a>
-                    </td>
 
-                </tr>
-            </Virtualize>
-        </tbody>
-    </table>
-    </div>
-    </div>
-    }
-@if (employees != null)
-{
-    <table class="table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>E-mail</th>
-                <th>Mobile number</th>
-                <th>Server update</th>
-                <th>Local update</th>
-                <th>User</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <Virtualize Context="employee" Items="@employees">
-                <tr>
-                    <td>@employee.Id</td>
-                    <td>@employee.Fullname</td>
-                    <td>@employee.Email</td>
-                    <td>@employee.MobileNumber</td>
-                    <td>@employee.ServerUpdate</td>
-                    <td>@employee.localUpdate</td>
-                    <td>@employee.User</td>
-                    <td>
-                        <input type="button" class="btn btn-danger" @onclick="@(e => DeleteEmployee(employee.Id))" value="Delete" />
-                        <a href='editemployee/@employee.Id' class="btn btn-block">Edit</a>
-                    </td>
 
-                </tr>
-            </Virtualize>
-        </tbody>
-    </table>
+@**@@*		";
+	}else{
+		echo"*@
+			<tr>
+				<td><a href='surveypageone/@item.HC' >@item.HC</a></td>
+				<td>@item.UserName<br/>	<img src="@item.imageFormData"/> </td>
+				<td>@item.nameProvince </td>
+				<td>@UnixTimeStampToDateTime(item.survey_staff.ch1_st)</td>
+				<td>@UnixTimeStampToDateTime(item.survey_staff.ch1_sp)</td>
+				<td>@UnixTimeStampToDateTime(item.survey_staff.ch2_st)</td>
+				<td>@UnixTimeStampToDateTime(item.survey_staff.ch2_sp)</td>
+				<td>@UnixTimeStampToDateTime(item.survey_staff.ch3_st)</td>
+				<td>@UnixTimeStampToDateTime(item.survey_staff.ch3_sp)</td>
+				<td>@UnixTimeStampToDateTime(item.survey_staff.ch4_st)</td>
+				<td>@UnixTimeStampToDateTime(item.survey_staff.ch4_sp)</td>
+				<td>@UnixTimeStampToDateTime(item.survey_staff.ch5_st)</td>
+				<td>@UnixTimeStampToDateTime(item.survey_staff.ch5_sp)</td>
+				 <td>
+                        <input type="button" class="btn btn-danger btn-sm"  @onclick="@(e => DeleteSurvey_profile(item.id))" value="ลบ" />
+						@{
+							var isDisable = false;
+								if(!String.IsNullOrEmpty(item.status)){
+
+									isDisable= item.status.Equals("1")?true:false;
+								}
+
+
+								
+							}
+								<h2>@isDisable</h2>
+                         <input type="button"class="btn  @(item.spinning?"btn-dark":"btn-primary") "  @onclick="@(e => syndatabyHc(item.id,item.index))" value="ส่งข้อมูล" disabled=@isDisable />
+						 </td>
+			</tr>	
+
+@**@
 }
-@code{
-   
-}
+</table>
+</div>
+</div>
+</div>

@@ -43,6 +43,7 @@ namespace FirstBlazorApp.Pages
             public bool spinning { get; set; }
             public int index { get; set; }
             public string imageFormData{ get; set; }
+            public string userName { get; set; }
 
         }
         List<tableListSurvey> tableListSurveys= new List<tableListSurvey>();
@@ -326,9 +327,11 @@ namespace FirstBlazorApp.Pages
             var survey_profiles = await DBContext.GetAll<survey_profile>("survey_profile");
             var provinces = await DBContext.GetAll<province>("province");
             var survey_staffs = await DBContext.GetAll<survey_staff>("survey_staff");
+            var volunteer = await DBContext.GetAll<volunteer>("volunteer");
             var listProfileStaff = from sp in survey_profiles
                                    join st in survey_staffs  on sp.HC equals st.HC
-                                   select new { sp, st };
+                                   join us in volunteer  on st.staff equals us.username
+                                   select new { sp, st,us };
             var listByhc = listProfileStaff.ToList();
             int index = 0;
             foreach (var item in listByhc.OrderBy(x=>x.sp.create_survey))
@@ -353,7 +356,9 @@ namespace FirstBlazorApp.Pages
                     status=item.sp.status,
                     spinning=false,
                     index=index,
-                    imageFormData = $"data:{"image/png"}; base64, {item.sp.PP}"
+                    imageFormData = $"data:{"image/png"}; base64, {item.sp.PP}",
+                    userName=item.us.name
+
 
                 });
                 index++;

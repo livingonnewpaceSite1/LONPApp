@@ -1,4 +1,5 @@
 ﻿@page "/"
+
 @inject Models.EmployeeContext DBContext
 @inject Models.EmployeeContext2 DBContext2
 
@@ -304,7 +305,7 @@ while($row=$result->fetch_object()){
 		echo"*@
 			<tr>
 				<td><a href='surveypageone/@item.HC' >@item.HC</a></td>
-				<td>@item.UserName<br/>	<img src="@item.imageFormData"/> </td>
+				<td>@item.userName<br/>	<img src="@item.imageFormData"/> </td>
 				<td>@item.nameProvince </td>
 				<td>@UnixTimeStampToDateTime(item.survey_staff.ch1_st)</td>
 				<td>@UnixTimeStampToDateTime(item.survey_staff.ch1_sp)</td>

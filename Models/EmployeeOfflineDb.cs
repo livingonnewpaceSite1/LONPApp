@@ -194,17 +194,40 @@ namespace FirstBlazorApp.Models
 
 
 
-                Random r = new Random();
-                int num = r.Next();
-                //  var openResult = await this.OpenIndexedDb();
+               // Random r = new Random();
+               // int num = r.Next();
+               // //  var openResult = await this.OpenIndexedDb();
 
-                Employee employee = new Employee();
-                employee.Id = num;
-                employee.localUpdate = DateTime.Now;
-                //var idMa
-                //x = employee.Max(x = x.id);
-               // _ = toServer(employee);
-                var result = await this.AddItems<Employee>("Employee", new List<Employee>() { employee });
+               // Employee employee = new Employee();
+               // employee.Id = num;
+               // employee.localUpdate = DateTime.Now;
+               // //var idMa
+               // //x = employee.Max(x = x.id);
+               //// _ = toServer(employee);
+               // var result = await this.AddItems<Employee>("Employee", new List<Employee>() { employee });
+
+
+            }
+        }
+       public async Task loadUserFromServer(int id)
+        {
+
+            using (var httpClient = new HttpClient())
+            {
+                // StringContent content = new StringContent(JsonConvert.SerializeObject(employees), Encoding.UTF8, "application/json");
+
+
+
+                var response = await httpClient.GetAsync("https://livingonnewpace.com/gis_bssm/blazoruser.php?id="+id);
+
+                var openResult = await this.OpenIndexedDb();
+                var contents = await response.Content.ReadAsStringAsync();
+                List<volunteer> DeserializedObjList = (List<volunteer>)Newtonsoft.Json.JsonConvert.DeserializeObject(contents, typeof(List<volunteer>));
+
+
+                //var db1Result1 = await this.DeleteAll("district" );
+               
+                 var db1Result2 = await this.AddItems<volunteer>("volunteer", DeserializedObjList);
 
 
             }
