@@ -14,6 +14,7 @@ using System.IO;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DnetIndexedDb;
+using System.Text;
 
 namespace FirstBlazorApp.Pages
 {
@@ -41,6 +42,7 @@ namespace FirstBlazorApp.Pages
             public string nameProvince { get; set; }
             public bool spinning { get; set; }
             public int index { get; set; }
+            public string imageFormData{ get; set; }
 
         }
         List<tableListSurvey> tableListSurveys= new List<tableListSurvey>();
@@ -50,14 +52,24 @@ namespace FirstBlazorApp.Pages
         {
             await DBContext.OpenIndexedDb();
             
-            var imageFiles = e.GetMultipleFiles();
+            var imageFiles = e.GetMultipleFiles(1);
             var format = "image/png";
+            var test3 = new ch2_gis()
+            {
+                HC = "222"
+            };
+            await DBContext.UpdateItems<ch2_gis>("ch2_gis", new List<ch2_gis>() { test3 });
+            var test1 = await DBContext.GetByIndex<string, ch2_gis>("ch2_gis", "222","", "hc", false);
+            var test2 = test1.FirstOrDefault();
             foreach (var imageFile in imageFiles)
             {
-                var resizedīmageFile = await imageFile.RequestImageFileAsync(format, 100, 100);
+                var resizedīmageFile = await imageFile.RequestImageFileAsync(format,400 ,400);
                 var buffer = new byte[resizedīmageFile.Size];
                 await resizedīmageFile.OpenReadStream().ReadAsync(buffer);
-                var imageDataurl = $"data:{format}; base64, {Convert.ToBase64String(buffer)}";
+                test2.mm = Convert.ToBase64String(buffer);
+                await DBContext.UpdateItems<ch2_gis>("ch2_gis", new List<ch2_gis>() { test2 });
+                var imageDataurl = $"data:{format}; base64, {test2.mm}";
+                //var imageDataurl = $"data:{format}; base64, {Convert.ToBase64String(buffer)}";
                 imageDataUrls.Add(imageDataurl);
 
             }
@@ -114,10 +126,14 @@ namespace FirstBlazorApp.Pages
             }
         }
         //******************* loading *********************
-        private void DeleteData()
+        protected  async Task  DeleteData()
         {
-             DBContext2.OpenIndexedDb();
-             DBContext2.DeleteIndexedDb();
+           await DBContext2.OpenIndexedDb();
+           await DBContext2.DeleteAll("ch2_gis_2");
+            InvokeAsync(() =>
+            {
+                StateHasChanged();
+            });
         }
         private async Task AsyncLongFunc()
         {
@@ -125,14 +141,19 @@ namespace FirstBlazorApp.Pages
             
             ch2_gis_2 sampleCh2 = new ch2_gis_2();
             sampleCh2.HC = configSurvey.randomNum();
-            await DBContext2.OpenIndexedDb();
 
-            await DBContext2.AddItems<ch2_gis_2>("ch2_gis_2", new List<ch2_gis_2>(){
+            var test1 = await DBContext2.OpenIndexedDb();
+            if (test1 == 0)
+            {
+                await DBContext2.AddItems<ch2_gis_2>("ch2_gis_2", new List<ch2_gis_2>(){
                 sampleCh2
             });
-
+            }
             var test = await DBContext2.GetAll<ch2_gis_2>("ch2_gis_2");
             currentCount = test.Count.ToString();
+            
+
+            
             spinning = true;
                 // flushing changes. The trick!!
             LongFunc();               // non-async code
@@ -331,8 +352,9 @@ namespace FirstBlazorApp.Pages
                     id=item.sp.id,
                     status=item.sp.status,
                     spinning=false,
-                    index=index
-                    
+                    index=index,
+                    imageFormData = $"data:{"image/png"}; base64, {item.sp.PP}"
+
                 });
                 index++;
             }

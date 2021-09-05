@@ -19,7 +19,7 @@ namespace FirstBlazorApp.Models
             Version = 63;
             Stores = _stores;
         }
-        private IndexedDbStore _tableFieldStore => new TStore<Employee23>();
+        private IndexedDbStore _tableFieldStore => new TStore<Employee2345>();
         private IndexedDbStore _tableFieldStore2 => new TStore<province_2>();
         private IndexedDbStore _tableFieldStore3 => new TStore<tambon_2>();
         private IndexedDbStore _tableFieldStore4 => new TStore<district_2>();
@@ -110,7 +110,7 @@ namespace FirstBlazorApp.Models
     
 }
 
-        public class Employee23
+        public class Employee2345
     {
         [IndexDbKey(AutoIncrement = true)]
         public int Id { get; set; }

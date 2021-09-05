@@ -350,7 +350,39 @@
 			<br>
 
 			</div>
+			<br>
+		<div class="row" style='border-style: dotted;border-width: 1px'>
+			<div class="col-lg-12  mb-3">
+				<label for="pic">รูป (ขนาดรูปห้ามเกิน 400K)</label>
+			<InputFile OnChange="OnInputFileChange" ></InputFile>
+				</div><div class="col-lg-12  mb-3">
+				<div style='display:table-cell' align='right'>คำอธิบายรูป : </div>
+				<div style='display:table-cell'><textarea name='detail' class="form-control"></textarea></div>
+			</div>
 
+					
+					<br><br>
+			
+					<img src="@imageDataurl"/>
+				
+			
+
+
+			<br>
+
+			</div>
+<br />
+@*<div class="image-list">
+	<table class="table table-bordered">
+		<tr>
+			@foreach(var imageDataUrl in imageDataUrls){
+				<td>
+					<img src="@imageDataUrl"/>
+				</td>
+			}
+		</tr>
+	</table>
+</div>    *@    
 		<br>
 		<div class="row">
 			<div class="col-lg-12  mb-3">

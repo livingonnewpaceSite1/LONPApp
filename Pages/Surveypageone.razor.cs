@@ -229,7 +229,32 @@ namespace FirstBlazorApp.Pages
 
 			//provinces1 = await DBContext.GetAll<province>("province");
 		}
+		
 
+		
+		private string imageString= "";
+		private string imageDataurl = "";
+		async Task OnInputFileChange(InputFileChangeEventArgs e)
+		{
+			
+
+			var imageFiles = e.GetMultipleFiles(1).FirstOrDefault();
+			var format = "image/png";
+			
+			var test1 = await DBContext.GetByIndex<string, ch2_gis>("ch2_gis", "222", "", "hc", false);
+			var test2 = test1.FirstOrDefault();
+			
+				var resizedīmageFile = await imageFiles.RequestImageFileAsync(format, 400, 400);
+				var buffer = new byte[resizedīmageFile.Size];
+				await resizedīmageFile.OpenReadStream().ReadAsync(buffer);
+				imageString = Convert.ToBase64String(buffer);
+				
+				 imageDataurl = $"data:{format}; base64, {imageString}";
+				//var imageDataurl = $"data:{format}; base64, {Convert.ToBase64String(buffer)}";
+				
+
+			
+		}
 		protected async Task HandleValidSubmit(EditContext context)
 		{
 			var User = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "name");
@@ -241,6 +266,7 @@ namespace FirstBlazorApp.Pages
 			recordSurveyProfile.JUN = SelectProvinceId;
 			recordSurveyProfile.AMP = SelectDistrictId;
 			recordSurveyProfile.TMP = tambonId;
+			recordSurveyProfile.PP = imageString;
 			var HCFromInput = configSurvey.HC_random(recordSurveyProfile.HC);
 
 			recordSurveyProfile.survey_no = HCFromInput;
