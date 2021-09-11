@@ -15,6 +15,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DnetIndexedDb;
 using System.Text;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace FirstBlazorApp.Pages
 {
@@ -384,9 +385,30 @@ namespace FirstBlazorApp.Pages
             }
             
         }
+        private string Contact = "";
+        private void NameChanged(string value)
+        {
+            Contact = value+"c";
+        }
+        string KeyPressed = "";
+        string EventInfo = "";
+        private string textInfo;
+        string textINfo2 = "";
+        private void KeyboardEventHandler(KeyboardEventArgs args)
+        {
+            KeyPressed = "Key Pressed is " + args.Key;
+            EventInfo = "Event Type " + args.Type;
+            textINfo2 = "text :"+textInfo;
+            StateHasChanged();
+        }
+    string stringValue = "";
 
-
-        private string AddResult = string.Empty;
+        private void SetValue(string Value)
+        {
+            textINfo2 = "text :" + Value;
+        }
+    
+    private string AddResult = string.Empty;
     }
 }
 

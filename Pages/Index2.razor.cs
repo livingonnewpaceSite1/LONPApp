@@ -374,8 +374,7 @@ namespace FirstBlazorApp.Pages
             }
 
         }
-
-
+        
         private string AddResult = string.Empty;
     }
 }
