@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DnetIndexedDb;
 using System.Text;
 using Microsoft.AspNetCore.Components.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace FirstBlazorApp.Pages
 {
@@ -47,6 +48,7 @@ namespace FirstBlazorApp.Pages
             public string userName { get; set; }
 
         }
+
         List<tableListSurvey> tableListSurveys= new List<tableListSurvey>();
 
         IList<string> imageDataUrls = new List<string>();
@@ -385,30 +387,11 @@ namespace FirstBlazorApp.Pages
             }
             
         }
-        private string Contact = "";
-        private void NameChanged(string value)
-        {
-            Contact = value+"c";
-        }
-        string KeyPressed = "";
-        string EventInfo = "";
-        private string textInfo;
-        string textINfo2 = "";
-        private void KeyboardEventHandler(KeyboardEventArgs args)
-        {
-            KeyPressed = "Key Pressed is " + args.Key;
-            EventInfo = "Event Type " + args.Type;
-            textINfo2 = "text :"+textInfo;
-            StateHasChanged();
-        }
-    string stringValue = "";
 
-        private void SetValue(string Value)
-        {
-            textINfo2 = "text :" + Value;
-        }
-    
-    private string AddResult = string.Empty;
+       
+
+
+        private string AddResult = string.Empty;
     }
 }
 

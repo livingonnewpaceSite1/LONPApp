@@ -306,57 +306,76 @@ namespace FirstBlazorApp.Pages
                 await DBContext.loadDbFromServer();
             }
             List<volunteer> getuser = new List<volunteer>();
-            if ( id != "")
+            var listUser = await DBContext.GetAll<volunteer>("volunteer");
+            if(listUser.Count == 0)
             {
-                await DBContext.loadUserFromServer( Int16.Parse(id));
-                getuser = await DBContext.GetByIndex<int?, volunteer>("volunteer", Int16.Parse(id), null, "id", false);
-                await JSRuntime.InvokeVoidAsync("localStorage.setItem", "name", getuser.Where(x=>x.id== Int16.Parse(id)).FirstOrDefault().username);
+                if (id != "")
+                {
+                    await DBContext.loadUserFromServer(Int16.Parse(id));
+                    getuser = await DBContext.GetByIndex<int?, volunteer>("volunteer", Int16.Parse(id), null, "id", false);
+                    await JSRuntime.InvokeVoidAsync("localStorage.setItem", "name", getuser.Where(x => x.id == Int16.Parse(id)).FirstOrDefault().username);
+                }
+            }else
+            {
+                if (id != ""&& id!=null)
+                {
+                    getuser= await DBContext.GetByIndex<int?, volunteer>("volunteer", Int16.Parse(id), null, "id", false);
+                    if (getuser.Count > 0)
+                    {
+                        var survey_profiles = await DBContext.GetAll<survey_profile>("survey_profile");
+                        var provinces = await DBContext.GetAll<province>("province");
+                        var survey_staffs = await DBContext.GetAll<survey_staff>("survey_staff");
+                        var listProfileStaff = from sp in survey_profiles
+                                               join st in survey_staffs on sp.HC equals st.HC
+                                               select new { sp, st };
+                        var listByhc = listProfileStaff.ToList();
+                        int index = 0;
+                        foreach (var item in listByhc.OrderBy(x => x.sp.create_survey))
+                        {
+                            var provinceName = "";
+                            var getTxtProvince = await DBContext.GetByIndex<string, province>("province", string.IsNullOrEmpty(item.sp.JUN) ? "" : item.sp.JUN, "", "province_id", false);
+                            if (getTxtProvince.Count == 0)
+                            {
+                                provinceName = "";
+                            }
+                            else
+                            {
+                                provinceName = getTxtProvince.FirstOrDefault().province_name_thai;
+                            }
+                            tableListSurveys.Add(new tableListSurvey
+                            {
+                                survey_staff = item.st,
+                                UserName = item.st.staff,
+                                nameProvince = provinceName,
+                                HC = item.sp.HC,
+                                id = item.sp.id,
+                                status = item.sp.status,
+                                spinning = false,
+                                index = index,
+                                imageFormData = $"data:{"image/png"}; base64, {item.sp.PP}"
+
+                            });
+                            index++;
+                        }
+
+                        num_total = survey_profile_list.Count();
+
+
+                    }
+                }
+                else
+                {
+                    NavigationManager.NavigateTo("https://ibm.com");
+                }
             }
+           
 
             //**************แบบสำรวจ***********
             //$query_p = "select HC,JUN from        survey_profile where HC='$row->HC'";
             //198: 	$query_st = "select name from   volunteer where username='$row->staff'";
             //202: 	$query_j = "select              province_name_thai from province where province_id='$row_p->JUN'";
             //206: 	$qcheck = "select username from survey_check where HC='$row->HC' and survey_year='$survey_year' and survey_no='$survey_no'";
-            var survey_profiles = await DBContext.GetAll<survey_profile>("survey_profile");
-            var provinces = await DBContext.GetAll<province>("province");
-            var survey_staffs = await DBContext.GetAll<survey_staff>("survey_staff");
-            var listProfileStaff = from sp in survey_profiles
-                                   join st in survey_staffs on sp.HC equals st.HC
-                                   select new { sp, st };
-            var listByhc = listProfileStaff.ToList();
-            int index = 0;
-            foreach (var item in listByhc.OrderBy(x => x.sp.create_survey))
-            {
-                var provinceName = "";
-                var getTxtProvince = await DBContext.GetByIndex<string, province>("province", string.IsNullOrEmpty(item.sp.JUN) ? "" : item.sp.JUN, "", "province_id", false);
-                if (getTxtProvince.Count == 0)
-                {
-                    provinceName = "";
-                }
-                else
-                {
-                    provinceName = getTxtProvince.FirstOrDefault().province_name_thai;
-                }
-                tableListSurveys.Add(new tableListSurvey
-                {
-                    survey_staff = item.st,
-                    UserName = item.st.staff,
-                    nameProvince = provinceName,
-                    HC = item.sp.HC,
-                    id = item.sp.id,
-                    status = item.sp.status,
-                    spinning = false,
-                    index = index,
-                    imageFormData = $"data:{"image/png"}; base64, {item.sp.PP}"
-
-                });
-                index++;
-            }
-
-            num_total = survey_profile_list.Count();
-
-
+           
 
         }
         public static string UnixTimeStampToDateTime(int? unixTimeStamp)

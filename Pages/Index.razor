@@ -346,16 +346,6 @@ echo"*@
 </div>
 </div>
 
-<div class="form-group row">
-    <label for="name">Contact: </label>
-    <input type="text" id="name" Value="@Contact" ValueChanged="NameChanged" ValueExpression="() => Contact" />
-</div>
-<input type="text" @bind-value="textInfo" @onkeydown="KeyboardEventHandler " @onkeypress=" KeyboardEventHandler " @onkeyup="KeyboardEventHandler "/>
-
-<h4>@KeyPressed </h4>
-<h4>@EventInfo</h4>
-<h4>@textINfo2</h4>
-<input value="@stringValue" @oninput="(EventArgs) => {SetValue(EventArgs.Value.ToString());}"/>
 
 @*br />
 <div class="container"> 
