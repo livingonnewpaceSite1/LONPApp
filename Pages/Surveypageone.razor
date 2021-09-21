@@ -2,7 +2,6 @@
 @page "/surveypageone/{HC}"
 
 @inject Models.EmployeeContext DBContext
-@inject Models.EmployeeContext DBContext
 @inject NavigationManager UriHelper
 @using FirstBlazorApp.Models
 @using System.ComponentModel.DataAnnotations
@@ -20,6 +19,16 @@
 		</div>
 
 		<br>
+		    <div class="form-group row">
+        <label for="firstName" class="col-sm-2 col-form-label">
+            First Name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="firstName" class="form-control" placeholder="First Name" onkeyup="autoTab(this,3)" onkeypress="autoTab(this,3)" maxlength='13'
+                       @bind-Value=" recordSurveyProfile.HC" />
+            <ValidationMessage For="@(() =>  recordSurveyProfile.HC)" />
+        </div>
+    </div>
 		<div class="row" style='border-style: dotted;border-width: 1px'>
 			<div class="col-lg-12  mb-3">
 				<label for="HC">รหัสบ้าน </label>

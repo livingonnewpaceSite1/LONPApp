@@ -1450,7 +1450,8 @@ namespace FirstBlazorApp.Models
         }
         public class survey_profile
         {
-            public string HC { get; set; }
+        [EmailDomainValidator(AllowedDomain = "pragimtech.com")]
+        public string HC { get; set; }
             public string survey_year { get; set; }
             public string survey_no { get; set; }
             public string AGRI { get; set; }

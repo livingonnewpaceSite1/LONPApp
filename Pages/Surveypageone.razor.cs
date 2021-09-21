@@ -14,6 +14,9 @@ using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Web.Mvc;
 using MatBlazor;
+using System.ComponentModel.DataAnnotations;
+using DnetIndexedDb;
+using FirstBlazorApp.Pages;
 
 namespace FirstBlazorApp.Pages
 {
@@ -351,6 +354,35 @@ namespace FirstBlazorApp.Pages
 		{
 			UriHelper.NavigateTo("/surveya1/" + HC_nextPage);
 		}
+		
+		}
 
+	public static class Globals
+	{
+		public const Int32 BUFFER_SIZE = 512; // Unmodifiable
+		public static String FILE_NAME = "Output.txt"; // Modifiable
+		public static readonly String CODE_PREFIX = "US-"; // Unmodifiable
+	}
+
+
+
+}
+public class EmailDomainValidator : ValidationAttribute
+{
+	public string AllowedDomain { get; set; }
+	
+	protected override ValidationResult IsValid(object value,
+ValidationContext validationContext)
+	{
+		
+		String code = Globals.CODE_PREFIX + value.ToString();
+		string[] strings = value.ToString().Split('@');
+		if (strings[1].ToUpper() == AllowedDomain.ToUpper())
+		{
+			return null;
+		}
+
+		return new ValidationResult($"Domain must be {AllowedDomain}",
+		new[] { validationContext.MemberName });
 	}
 }

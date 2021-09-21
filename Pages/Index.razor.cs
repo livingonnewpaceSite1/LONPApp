@@ -1,11 +1,9 @@
 ﻿using FirstBlazorApp.Models;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using static FirstBlazorApp.Pages.Surveypageone;
@@ -14,9 +12,6 @@ using System.IO;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DnetIndexedDb;
-using System.Text;
-using Microsoft.AspNetCore.Components.Web;
-using System.ComponentModel.DataAnnotations;
 
 namespace FirstBlazorApp.Pages
 {

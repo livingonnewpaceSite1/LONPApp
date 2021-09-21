@@ -131,10 +131,10 @@ namespace FirstBlazorApp.Models
     }
 
 
-    
-              public class EmployeeContext : IndexedDbInterop
+
+    public class EmployeeContext : IndexedDbInterop
     {
- 
+        
         public EmployeeContext(IJSRuntime jSRuntime, IndexedDbOptions<EmployeeContext> options) : base(jSRuntime, options) { }
         public async Task Add(Employee employee)
         {
@@ -166,14 +166,14 @@ namespace FirstBlazorApp.Models
                 List<district> DeserializedObjList = (List<district>)Newtonsoft.Json.JsonConvert.DeserializeObject(contents, typeof(List<district>));
 
 
-                var db1Result1 = await this.DeleteAll("district" );
-                 var db1Result2 = await this.AddItems<district>("district",DeserializedObjList);
+                var db1Result1 = await this.DeleteAll("district");
+                var db1Result2 = await this.AddItems<district>("district", DeserializedObjList);
 
 
-                 response = await httpClient.GetAsync("https://www.psutrobon.com/gis_bssm/blazorLoadDb.php?table=tambon");
+                response = await httpClient.GetAsync("https://www.psutrobon.com/gis_bssm/blazorLoadDb.php?table=tambon");
 
-               
-                 contents = await response.Content.ReadAsStringAsync();
+
+                contents = await response.Content.ReadAsStringAsync();
                 List<tambon> DeserializedObjList2 = (List<tambon>)Newtonsoft.Json.JsonConvert.DeserializeObject(contents, typeof(List<tambon>));
 
 
@@ -194,22 +194,22 @@ namespace FirstBlazorApp.Models
 
 
 
-               // Random r = new Random();
-               // int num = r.Next();
-               // //  var openResult = await this.OpenIndexedDb();
+                // Random r = new Random();
+                // int num = r.Next();
+                // //  var openResult = await this.OpenIndexedDb();
 
-               // Employee employee = new Employee();
-               // employee.Id = num;
-               // employee.localUpdate = DateTime.Now;
-               // //var idMa
-               // //x = employee.Max(x = x.id);
-               //// _ = toServer(employee);
-               // var result = await this.AddItems<Employee>("Employee", new List<Employee>() { employee });
+                // Employee employee = new Employee();
+                // employee.Id = num;
+                // employee.localUpdate = DateTime.Now;
+                // //var idMa
+                // //x = employee.Max(x = x.id);
+                //// _ = toServer(employee);
+                // var result = await this.AddItems<Employee>("Employee", new List<Employee>() { employee });
 
 
             }
         }
-       public async Task loadUserFromServer(int id)
+        public async Task loadUserFromServer(int id)
         {
 
             using (var httpClient = new HttpClient())
@@ -218,7 +218,7 @@ namespace FirstBlazorApp.Models
 
 
 
-                var response = await httpClient.GetAsync("https://livingonnewpace.com/gis_bssm/blazoruser.php?id="+id);
+                var response = await httpClient.GetAsync("https://livingonnewpace.com/gis_bssm/blazoruser.php?id=" + id);
 
                 var openResult = await this.OpenIndexedDb();
                 var contents = await response.Content.ReadAsStringAsync();
@@ -226,8 +226,8 @@ namespace FirstBlazorApp.Models
 
 
                 //var db1Result1 = await this.DeleteAll("district" );
-               
-                 var db1Result2 = await this.AddItems<volunteer>("volunteer", DeserializedObjList);
+
+                var db1Result2 = await this.AddItems<volunteer>("volunteer", DeserializedObjList);
 
 
             }
@@ -256,13 +256,14 @@ namespace FirstBlazorApp.Models
                     }
                 }
 
-               
+
             }
-        }public async Task toServerByHc(int? id)
+        }
+        public async Task toServerByHc(int? id)
         {
 
-            
-            var getByid = await GetByKey<int, survey_profile>("survey_profile",(int) id);
+
+            var getByid = await GetByKey<int, survey_profile>("survey_profile", (int)id);
 
             if (getByid.id != null)
             {
@@ -342,12 +343,12 @@ namespace FirstBlazorApp.Models
         public async Task Delete(int id)
         {
             Employee emp = await GetByKey<int, Employee>("Employee", id);
-        
-     
+
+
             if (emp.Id > 0)
             {
 
-               await this.DeleteByKey<int>("Employee", emp.Id);
+                await this.DeleteByKey<int>("Employee", emp.Id);
             }
 
 
@@ -359,16 +360,16 @@ namespace FirstBlazorApp.Models
             var openResult = await this.OpenIndexedDb();
             return await this.GetAll<province>("province");
         }
-        public  List<district> GetAll_survey1_district(int province_id)
+        public List<district> GetAll_survey1_district(int province_id)
         {
-            var openResult =  this.OpenIndexedDb();
+            var openResult = this.OpenIndexedDb();
             var result = this.GetAll<district>("district");
             return (List<district>)result.Result.Where(x => x.province_id == province_id);
         }
         public int randomNum()
         {
             Random r = new Random();
-     int num = r.Next();
+            int num = r.Next();
             return num;
         }
         public async Task<List<Employee>> GetAll()
@@ -379,12 +380,12 @@ namespace FirstBlazorApp.Models
             int num = r.Next();
 
 
-            List<Employee> emp=new List<Employee>();
+            List<Employee> emp = new List<Employee>();
             emp.Add(new Employee { Id = num, Fullname = "" });
 
             //var idMa
             //x = employee.Max(x = x.id);
-            var result = await this.AddItems<Employee>("Employee", emp) ;
+            var result = await this.AddItems<Employee>("Employee", emp);
 
 
             return await this.GetAll<Employee>("Employee");
@@ -400,6 +401,10 @@ namespace FirstBlazorApp.Models
         //{
 
         //}
+        public static  int GetVolunteers()
+        { 
+            return 555;
+        }
         public async Task UpdateById(Employee emp)
         {
             await this.OpenIndexedDb();
@@ -465,5 +470,8 @@ namespace FirstBlazorApp.Models
             // }
 
         }
+
     }
+  
+
 }
