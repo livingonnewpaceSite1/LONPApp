@@ -10,6 +10,7 @@
 <EditForm Model="@recordSurveyProfile" OnValidSubmit="@HandleValidSubmit" >
 	<DataAnnotationsValidator />
 <input type='hidden' name='next' value='1'>
+<h4>@textINfo2</h4>
 
 		<br>
 		<div class="row" style='border-style: dotted;border-width: 1px'>
@@ -20,20 +21,17 @@
 
 		<br>
 		    <div class="form-group row">
-        <label for="firstName" class="col-sm-2 col-form-label">
-            First Name
-        </label>
+       
         <div class="col-sm-10">
-            <InputText id="firstName" class="form-control" placeholder="First Name" onkeyup="autoTab(this,3)" onkeypress="autoTab(this,3)" maxlength='13'
-                       @bind-Value=" recordSurveyProfile.HC" />
-            <ValidationMessage For="@(() =>  recordSurveyProfile.HC)" />
+            
         </div>
     </div>
 		<div class="row" style='border-style: dotted;border-width: 1px'>
 			<div class="col-lg-12  mb-3">
 				<label for="HC">รหัสบ้าน </label>
-				<input type='text' id="HC" name='HC'onkeyup="autoTab(this,3)" onkeypress="autoTab(this,3)" maxlength='13' @bind-value="@recordSurveyProfile.HC" placeholder="ที่ระบุในทะเบียนบ้าน ขอดูทะเบียนบ้าน"  required >
-				 <ValidationMessage For="@(() => recordSurveyProfile.HC)" />
+				<InputText id="firstName" class="form-control" placeholder="First Name" onkeyup="autoTab(this,3)" onkeypress="autoTab(this,3)" maxlength='13'
+                 @oninput="(EventArgs) => {SetValue(EventArgs.Value.ToString());}"      @bind-Value=" recordSurveyProfile.HC"  />
+            <ValidationMessage For="@(() =>  recordSurveyProfile.HC)" />
 				<!--<input type='text' id="HC" name='HC' placeholder="ที่ระบุในทะเบียนบ้าน ขอดูทะเบียนบ้าน" onkeyup="autoTab(this,3)" onkeypress="autoTab(this,3)" maxlength='13' onblur="HC_out(this.form)" value='<?php echo$_SESSION['HC']?>' class="form-control" required >-->
 				<label>กรณีไม่สามารถจะขอดูทะเบียนบ้านได้ ให้สร้างรหัสเองได้ โดยใส่ 0 หน้าเลขรหัสจังหวัด 2 หลัก รหัสแบบสอบถาม  8 หลัก  รวมเป็น 11 หลัก</label><br>
 <!--				แล้วตามด้วยการสร้างโคดกันเองแยกเป็นตำบลหรือเลขที่บ้านกันเองได้ โดยไม่ให้มันซ้ำซ้อนกันครับ หรืออาจจะเป็น 0XY แล้วตามด้วยรหัสแบบสอบถามก็ได้นะครับ รหัสแบบสอบถาม 8 หลัก รวมเป็น 11 หลักครับ โดย 0 ตัวหน้าแปลว่า ไม่สามารถป้อนรหัสบ้านได้-->
@@ -342,26 +340,7 @@
 			</div>
 		</div>
 		<br>
-		<br>
-		<div class="row" style='border-style: dotted;border-width: 1px'>
-			<div class="col-lg-12  mb-3">
-				<label for="pic">รูป (ขนาดรูปห้ามเกิน 400K)</label>
-					<input type='file' name='picture' accept="image/*" id='pic' onchange="preview_image(event)" class="form-control">
-			</div>
 
-			<div class="col-lg-12  mb-3">
-				<div style='display:table-cell' align='right'>คำอธิบายรูป : </div>
-				<div style='display:table-cell'><textarea name='detail' class="form-control"></textarea></div>
-			</div>
-
-					
-					<br><br><img id="output_image"width='400' />
-
-
-			<br>
-
-			</div>
-			<br>
 		<div class="row" style='border-style: dotted;border-width: 1px'>
 			<div class="col-lg-12  mb-3">
 				<label for="pic">รูป (ขนาดรูปห้ามเกิน 400K)</label>

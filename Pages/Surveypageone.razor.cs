@@ -354,13 +354,37 @@ namespace FirstBlazorApp.Pages
 		{
 			UriHelper.NavigateTo("/surveya1/" + HC_nextPage);
 		}
+		string textINfo2 = "";
+		string stringValue = "";
+		protected async void SetValue(string Value)
+        {
+			textINfo2 = "text :" + Value;
+			string textVal = Value.Replace("-", "");
+			if (textVal.Length > 10)
+			{
+				await DBContext.OpenIndexedDb();
+				var getHcBytext = await DBContext.GetByIndex<string, survey_profile>("survey_profile", Value, "", "hc", false);
+
+				if (getHcBytext != null && getHcBytext.Count > 0)
+				{
+					Globals.HC_globla = getHcBytext.FirstOrDefault().HC;
+
+				}
+				else
+				{
+					Globals.HC_globla = "";
+
+				}
+			}
+
 		
 		}
+    }
 
 	public static class Globals
 	{
 		public const Int32 BUFFER_SIZE = 512; // Unmodifiable
-		public static String FILE_NAME = "Output.txt"; // Modifiable
+		public static String HC_globla = ""; // Modifiable
 		public static readonly String CODE_PREFIX = "US-"; // Unmodifiable
 	}
 
@@ -375,14 +399,17 @@ public class EmailDomainValidator : ValidationAttribute
 ValidationContext validationContext)
 	{
 		
-		String code = Globals.CODE_PREFIX + value.ToString();
-		string[] strings = value.ToString().Split('@');
-		if (strings[1].ToUpper() == AllowedDomain.ToUpper())
-		{
-			return null;
-		}
+		String code = Globals.HC_globla ;
+        //if (strings[1].ToUpper() == AllowedDomain.ToUpper())
+        //{
+        //	return null;
+        //}
 
-		return new ValidationResult($"Domain must be {AllowedDomain}",
+        if (value.ToString()  != code)
+        {
+			return null;
+        }
+		return new ValidationResult($"เลข",
 		new[] { validationContext.MemberName });
 	}
 }

@@ -18,10 +18,10 @@
 			@{
 				var sessionHC= JSRuntime.InvokeAsync<string>("localStorage.getItem", "HC");
 			}
-		<label><b><font size='6' color='red'>HC :@sessionHC</font></b></label>
+		<label><b><font size='6' color='red'>HC :@HC</font></b></label>
 	</div>
 </div>
-<input type="button" @onclick="@(e=>delAllsurveyA1())" value="del">
+
 @*<?php
 $mysqli=mcon($mysql["host"], $mysql["user"], $mysql["pass"], $mysql["dbname"],$mysql["charset"]);
 
