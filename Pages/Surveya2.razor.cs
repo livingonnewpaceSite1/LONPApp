@@ -74,6 +74,7 @@ string complete = "";
 			public string title { get; set; }
 			public checkSurveya2 checkSurveya2{ get; set; }
 		}
+		private string value1;
 		public class checkSurveya2
         {
 		public bool	a7_0  {get;set;}

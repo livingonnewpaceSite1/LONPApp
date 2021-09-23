@@ -77,15 +77,50 @@ while($row1=$result1->fetch_object()){//while($row1=$result1->fetch_object()){
         <div class="custom-control custom-checkbox">
 			<MatCheckbox   @bind-Value="@item.checkSurveya2.a7_1" >  เด็กแรกเกิด</MatCheckbox>
 			<input type='text'placeholder='--จำนวนเงิน--'@bind-value="@item.survey_A1.a7_1_1"  class="form-control">
-						<input type='text' name='a7_1_2[@index]' placeholder='--ความถี่--' @bind-value="@item.survey_A1.a7_1_2"  class="form-control">
-		</div>
+
+						<select class="form-control selectpicker" @bind="item.survey_A1.a7_1_2">
+							
+								<option>--ความถี่--</option>
+								<option value="1">1</option> 
+								<option Value="2"	>2 ครั้งต่อเดือน</option>
+								<option Value="3"	>3 ครั้งต่อเดือน</option>
+								<option Value="4"	>4 ครั้งต่อเดือน</option>
+								<option Value="5"	>2 เดือนต่อ 1 ครั้ง</option>
+								<option Value="6"	>3 เดือนต่อ 1 ครั้ง</option>
+								<option Value="7"	>4 เดือนต่อ 1 ครั้ง</option>
+								<option Value="8"	>6 เดือนต่อ 1 ครั้ง</option>
+								<option Value="10"	>1 ครั้งต่อปี</option>
+								<option Value="11"	>2 ครั้งต่อปี</option>
+								<option Value="9"	>ครั้งเดียว</option>
+
+
+							</select>
+						</div>
 	</div>
 	<div class="col-lg-12  mb-3">
         <div class="custom-control custom-checkbox">
 			<MatCheckbox  @bind-Value="@item.checkSurveya2.a7_2" >
 			2) เบี้ยผู้สูงอายุ/คนชรา</MatCheckbox>
 			<input type='text' name='a7_2_1[@index]' placeholder='--จำนวนเงิน--'@bind-value="@item.survey_A1.a7_2_1"  class="form-control">
-			<input type='text' name='a7_2_2[@index]' placeholder='--ความถี่--' @bind-value="@item.survey_A1.a7_2_2"  class="form-control">
+			
+						<select class="form-control selectpicker" @bind="item.survey_A1.a7_2_2">
+							
+								<option>--ความถี่--</option>
+								<option value="1">1</option> 
+								<option Value="2"	>2 ครั้งต่อเดือน</option>
+								<option Value="3"	>3 ครั้งต่อเดือน</option>
+								<option Value="4"	>4 ครั้งต่อเดือน</option>
+								<option Value="5"	>2 เดือนต่อ 1 ครั้ง</option>
+								<option Value="6"	>3 เดือนต่อ 1 ครั้ง</option>
+								<option Value="7"	>4 เดือนต่อ 1 ครั้ง</option>
+								<option Value="8"	>6 เดือนต่อ 1 ครั้ง</option>
+								<option Value="10"	>1 ครั้งต่อปี</option>
+								<option Value="11"	>2 ครั้งต่อปี</option>
+								<option Value="9"	>ครั้งเดียว</option>
+
+
+							</select>
+					
 		</div>
 	</div>
 	<div class="col-lg-12  mb-3">
@@ -93,7 +128,25 @@ while($row1=$result1->fetch_object()){//while($row1=$result1->fetch_object()){
 			<MatCheckbox  @bind-Value="@item.checkSurveya2.a7_3">
 			3) เบี้ยคนพิการ</MatCheckbox>
 			<input type='text' name='a7_3_1[@index]' placeholder='--จำนวนเงิน--'@bind-value="@item.survey_A1.a7_3_1"  class="form-control">
-			<input type='text' name='a7_3_2[@index]' placeholder='--ความถี่--' @bind-value="@item.survey_A1.a7_3_2"  class="form-control">
+			
+						<select class="form-control selectpicker" @bind="item.survey_A1.a7_3_2">
+							
+								<option>--ความถี่--</option>
+								<option value="1">1</option> 
+								<option Value="2"	>2 ครั้งต่อเดือน</option>
+								<option Value="3"	>3 ครั้งต่อเดือน</option>
+								<option Value="4"	>4 ครั้งต่อเดือน</option>
+								<option Value="5"	>2 เดือนต่อ 1 ครั้ง</option>
+								<option Value="6"	>3 เดือนต่อ 1 ครั้ง</option>
+								<option Value="7"	>4 เดือนต่อ 1 ครั้ง</option>
+								<option Value="8"	>6 เดือนต่อ 1 ครั้ง</option>
+								<option Value="10"	>1 ครั้งต่อปี</option>
+								<option Value="11"	>2 ครั้งต่อปี</option>
+								<option Value="9"	>ครั้งเดียว</option>
+
+
+							</select>
+						
 		</div>
 	</div>
 	<div class="col-lg-12  mb-3">
@@ -101,7 +154,23 @@ while($row1=$result1->fetch_object()){//while($row1=$result1->fetch_object()){
 			<MatCheckbox  @bind-Value="@item.checkSurveya2.a7_4">
 			4) ประกันสังคม (นายจ้าง)</MatCheckbox>
 			<input type='text' name='a7_4_1[@index]' placeholder='--จำนวนเงิน--'@bind-value="@item.survey_A1.a7_4_1"  class="form-control">
-			<input type='text' name='a7_4_2[@index]' placeholder='--ความถี่--' @bind-value="@item.survey_A1.a7_4_2"  class="form-control">
+				<select class="form-control selectpicker" @bind="item.survey_A1.a7_4_2">
+							
+								<option>--ความถี่--</option>
+								<option value="1">1</option> 
+								<option Value="2"	>2 ครั้งต่อเดือน</option>
+								<option Value="3"	>3 ครั้งต่อเดือน</option>
+								<option Value="4"	>4 ครั้งต่อเดือน</option>
+								<option Value="5"	>2 เดือนต่อ 1 ครั้ง</option>
+								<option Value="6"	>3 เดือนต่อ 1 ครั้ง</option>
+								<option Value="7"	>4 เดือนต่อ 1 ครั้ง</option>
+								<option Value="8"	>6 เดือนต่อ 1 ครั้ง</option>
+								<option Value="10"	>1 ครั้งต่อปี</option>
+								<option Value="11"	>2 ครั้งต่อปี</option>
+								<option Value="9"	>ครั้งเดียว</option>
+
+
+							</select>
 		</div>
 	</div>
 	<div class="col-lg-12  mb-3">
@@ -109,7 +178,24 @@ while($row1=$result1->fetch_object()){//while($row1=$result1->fetch_object()){
 			<MatCheckbox  @bind-Value="@item.checkSurveya2.a7_5" >
 			5) ประกันตนเอง</MatCheckbox>
 			<input type='text' name='a7_5_1[@index]' placeholder='--จำนวนเงิน--'@bind-value="@item.survey_A1.a7_5_1"  class="form-control">
-			<input type='text' name='a7_5_2[@index]' placeholder='--ความถี่--' @bind-value="@item.survey_A1.a7_5_2"  class="form-control">
+				<select class="form-control selectpicker" @bind="item.survey_A1.a7_5_2">
+							
+								<option>--ความถี่--</option>
+								<option value="1">1</option> 
+								<option Value="2"	>2 ครั้งต่อเดือน</option>
+								<option Value="3"	>3 ครั้งต่อเดือน</option>
+								<option Value="4"	>4 ครั้งต่อเดือน</option>
+								<option Value="5"	>2 เดือนต่อ 1 ครั้ง</option>
+								<option Value="6"	>3 เดือนต่อ 1 ครั้ง</option>
+								<option Value="7"	>4 เดือนต่อ 1 ครั้ง</option>
+								<option Value="8"	>6 เดือนต่อ 1 ครั้ง</option>
+								<option Value="10"	>1 ครั้งต่อปี</option>
+								<option Value="11"	>2 ครั้งต่อปี</option>
+								<option Value="9"	>ครั้งเดียว</option>
+
+
+							</select>
+
 		</div>
 	</div>
 	<div class="col-lg-12  mb-3">
@@ -117,7 +203,23 @@ while($row1=$result1->fetch_object()){//while($row1=$result1->fetch_object()){
 			<MatCheckbox  @bind-Value="@item.checkSurveya2.a7_6" >
 			6) บัตรสวัสดิการแห่งรัฐ</MatCheckbox>
 			<input type='text' name='a7_6_1[@index]' placeholder='--จำนวนเงิน--'@bind-value="@item.survey_A1.a7_6_1"  class="form-control">
-			<input type='text' name='a7_6_2[@index]' placeholder='--ความถี่--' @bind-value="@item.survey_A1.a7_6_2"  class="form-control">
+				<select class="form-control selectpicker" @bind="item.survey_A1.a7_6_2">
+							
+								<option>--ความถี่--</option>
+								<option value="1">1</option> 
+								<option Value="2"	>2 ครั้งต่อเดือน</option>
+								<option Value="3"	>3 ครั้งต่อเดือน</option>
+								<option Value="4"	>4 ครั้งต่อเดือน</option>
+								<option Value="5"	>2 เดือนต่อ 1 ครั้ง</option>
+								<option Value="6"	>3 เดือนต่อ 1 ครั้ง</option>
+								<option Value="7"	>4 เดือนต่อ 1 ครั้ง</option>
+								<option Value="8"	>6 เดือนต่อ 1 ครั้ง</option>
+								<option Value="10"	>1 ครั้งต่อปี</option>
+								<option Value="11"	>2 ครั้งต่อปี</option>
+								<option Value="9"	>ครั้งเดียว</option>
+
+
+							</select>
 		</div>
 	</div>
 	<div class="col-lg-12  mb-3">
@@ -125,14 +227,46 @@ while($row1=$result1->fetch_object()){//while($row1=$result1->fetch_object()){
 			<MatCheckbox  @bind-Value="@item.checkSurveya2.a7_7" >
 			7) การเยียวยาจากโควิด</MatCheckbox>
 			<input type='text' name='a7_7_1[@index]' placeholder='--จำนวนเงิน--'@bind-value="@item.survey_A1.a7_7_1"  class="form-control">
-			<input type='text' name='a7_7_2[@index]' placeholder='--ความถี่--' @bind-value="@item.survey_A1.a7_7_2"  class="form-control">
+				<select class="form-control selectpicker" @bind="item.survey_A1.a7_7_2">
+							
+								<option>--ความถี่--</option>
+								<option value="1">1</option> 
+								<option Value="2"	>2 ครั้งต่อเดือน</option>
+								<option Value="3"	>3 ครั้งต่อเดือน</option>
+								<option Value="4"	>4 ครั้งต่อเดือน</option>
+								<option Value="5"	>2 เดือนต่อ 1 ครั้ง</option>
+								<option Value="6"	>3 เดือนต่อ 1 ครั้ง</option>
+								<option Value="7"	>4 เดือนต่อ 1 ครั้ง</option>
+								<option Value="8"	>6 เดือนต่อ 1 ครั้ง</option>
+								<option Value="10"	>1 ครั้งต่อปี</option>
+								<option Value="11"	>2 ครั้งต่อปี</option>
+								<option Value="9"	>ครั้งเดียว</option>
+
+
+							</select>
 		</div>
 	</div>
 	<div class="col-lg-12  mb-3">
         <div class="custom-control custom-checkbox">
 			<MatCheckbox  @bind-Value="@item.checkSurveya2.a7_8" >8) อื่น ๆ</MatCheckbox>
 			<input type='text' name='a7_8_1[@index]' placeholder='--จำนวนเงิน--'@bind-value="@item.survey_A1.a7_8_1"  class="form-control">
-			<input type='text' name='a7_8_2[@index]' placeholder='--ความถี่--' @bind-value="@item.survey_A1.a7_8_2"  class="form-control">
+				<select class="form-control selectpicker" @bind="item.survey_A1.a7_8_2">
+							
+								<option>--ความถี่--</option>
+								<option value="1">1</option> 
+								<option Value="2"	>2 ครั้งต่อเดือน</option>
+								<option Value="3"	>3 ครั้งต่อเดือน</option>
+								<option Value="4"	>4 ครั้งต่อเดือน</option>
+								<option Value="5"	>2 เดือนต่อ 1 ครั้ง</option>
+								<option Value="6"	>3 เดือนต่อ 1 ครั้ง</option>
+								<option Value="7"	>4 เดือนต่อ 1 ครั้ง</option>
+								<option Value="8"	>6 เดือนต่อ 1 ครั้ง</option>
+								<option Value="10"	>1 ครั้งต่อปี</option>
+								<option Value="11"	>2 ครั้งต่อปี</option>
+								<option Value="9"	>ครั้งเดียว</option>
+
+
+							</select>
 		</div>
 	</div>
 </div>
