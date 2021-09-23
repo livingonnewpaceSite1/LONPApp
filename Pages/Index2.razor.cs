@@ -310,13 +310,18 @@ namespace FirstBlazorApp.Pages
             if(listUser.Count == 0)
             {
                 if (id != "")
+
                 {
-                    await DBContext.loadUserFromServer(Int16.Parse(id));
+                    await DBContext.loadUserFromServer(Int32.Parse(id));
                     getuser = await DBContext.GetByIndex<int?, volunteer>("volunteer", Int16.Parse(id), null, "id", false);
                     await JSRuntime.InvokeVoidAsync("localStorage.setItem", "name", getuser.Where(x => x.id == Int16.Parse(id)).FirstOrDefault().username);
+                    StateHasChanged();
+                    NavigationManager.NavigateTo("/");
+                    
                 }
             }else
             {
+                NavigationManager.NavigateTo("/");
                 if (id != ""&& id!=null)
                 {
                     getuser= await DBContext.GetByIndex<int?, volunteer>("volunteer", Int16.Parse(id), null, "id", false);
@@ -365,7 +370,8 @@ namespace FirstBlazorApp.Pages
                 }
                 else
                 {
-                    NavigationManager.NavigateTo("https://ibm.com");
+                    StateHasChanged();
+                    NavigationManager.NavigateTo("/");
                 }
             }
            

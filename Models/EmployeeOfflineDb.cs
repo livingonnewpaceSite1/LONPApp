@@ -220,8 +220,11 @@ namespace FirstBlazorApp.Models
 
                 var response = await httpClient.GetAsync("https://livingonnewpace.com/gis_bssm/blazoruser.php?id=" + id);
 
-                var openResult = await this.OpenIndexedDb();
-                var contents = await response.Content.ReadAsStringAsync();
+                //var openResult = await this.OpenIndexedDb();
+                var contents =  await response.Content.ReadAsStringAsync();
+                 contents ="["+ contents + "]";
+              //  var contents = "{\"id\":3,\"username\":\"bssm1989@gmail.\",\"name\":\"\\\\u0e1a\\\\u0e31\\\\u0e2a\\\\u0e0b\\\\u0e32\\\\u0e21 \\\\u0e2d\\\\u0e38\\\\u0e21\\\\u0e32\\\\u0e25\\\\u0e35\",\"email\":\"bssm1989@gmail.com\",\"JUN\":\"94\"}";
+                //var contents = "[{id:555}]";
                 List<volunteer> DeserializedObjList = (List<volunteer>)Newtonsoft.Json.JsonConvert.DeserializeObject(contents, typeof(List<volunteer>));
 
 
