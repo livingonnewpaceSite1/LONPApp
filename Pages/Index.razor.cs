@@ -12,6 +12,7 @@ using System.IO;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using DnetIndexedDb;
+using Microsoft.JSInterop;
 
 namespace FirstBlazorApp.Pages
 {
@@ -363,10 +364,11 @@ namespace FirstBlazorApp.Pages
             }
 
             num_total =survey_profile_list.Count();
-
+            user = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "name");
 
 
         }
+        private string user ="";
         public static string UnixTimeStampToDateTime(int? unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch
