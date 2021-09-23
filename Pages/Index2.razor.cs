@@ -316,12 +316,12 @@ namespace FirstBlazorApp.Pages
                     getuser = await DBContext.GetByIndex<int?, volunteer>("volunteer", Int16.Parse(id), null, "id", false);
                     await JSRuntime.InvokeVoidAsync("localStorage.setItem", "name", getuser.Where(x => x.id == Int16.Parse(id)).FirstOrDefault().username);
                     StateHasChanged();
-                    NavigationManager.NavigateTo("/");
+                    NavigationManager.NavigateTo("https://livingonnewpacesite1.github.io/LONPApp");
                     
                 }
             }else
             {
-                NavigationManager.NavigateTo("/");
+                    NavigationManager.NavigateTo("https://livingonnewpacesite1.github.io/LONPApp");
                 if (id != ""&& id!=null)
                 {
                     getuser= await DBContext.GetByIndex<int?, volunteer>("volunteer", Int16.Parse(id), null, "id", false);
@@ -370,8 +370,8 @@ namespace FirstBlazorApp.Pages
                 }
                 else
                 {
-                    StateHasChanged();
-                    NavigationManager.NavigateTo("/");
+                    StateHasChanged(); NavigationManager.NavigateTo("https://livingonnewpacesite1.github.io/LONPApp");
+
                 }
             }
            
