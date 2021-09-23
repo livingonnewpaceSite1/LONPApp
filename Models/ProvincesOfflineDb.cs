@@ -690,11 +690,18 @@ namespace FirstBlazorApp.Models
             public string a7_8 { get; set; }
             public string a7_8_1 { get; set; }
             public string a7_8_2 { get; set; }
-            public string a9 { get; set; }
+            public string a9_1 { get; set; }
+            public string a9_2 { get; set; }
             public string a10 { get; set; }
             public string a11 { get; set; }
+
+         
             public string a12 { get; set; }
             public string a13 { get; set; }
+
+
+            public string a11_1 { get; set; }
+            public string a12_1 { get; set; }
         }
         public class survey_a2
         {
