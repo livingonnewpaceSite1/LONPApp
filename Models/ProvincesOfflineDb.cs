@@ -758,6 +758,24 @@ namespace FirstBlazorApp.Models
             public string a17_3_1 { get; set; }
             public string a17_3_2 { get; set; }
             public int? a15_1 { get; set; }
+            public string a14_0 { get; set; }
+            public string a14_0_1 { get; set; }
+            public string a14_1_1_1 { get; set; }
+            public string a14_1_1_2 { get; set; }
+            public string a14_1_1_3 { get; set; }
+            public string a14_1_1_4 { get; set; }
+            public string a14_1_1_5 { get; set; }
+            public string a14_1_1_6 { get; set; }
+            public string a14_1_1_7 { get; set; }
+            public string a14_1_2_1 { get; set; }
+            public string a14_1_2_2 { get; set; }
+            public string a14_1_2_3 { get; set; }
+            public string a14_1_2_4 { get; set; }
+            public string a14_1_2_5 { get; set; }
+            public string a14_1_2_6 { get; set; }
+            public string a14_1_2_7 { get; set; }
+            public string a14_1_2_7_1{ get; set; }
+            public string a14_1_3_1 { get; set; }
         }
         public class survey_b1
         {

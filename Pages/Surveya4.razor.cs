@@ -122,6 +122,21 @@ string complete = "";
 			public bool a15_8 { get; set; }
 			public bool a15_9 { get; set; }
 			public bool a15_10 { get; set; }
+			public bool	 a14_1_1_1 { get; set; }
+			public bool	 a14_1_1_2 { get; set; }
+			public bool	 a14_1_1_3 { get; set; }
+			public bool	 a14_1_1_4 { get; set; }
+			public bool	 a14_1_1_5 { get; set; }
+			public bool	 a14_1_1_6 { get; set; }
+			public bool	 a14_1_1_7{ get; set; }
+			public bool	 a14_1_2_1 { get; set; }
+			public bool	 a14_1_2_2 { get; set; }
+			public bool	 a14_1_2_3 { get; set; }
+			public bool	 a14_1_2_4 { get; set; }
+			public bool	 a14_1_2_5 { get; set; }
+			public bool a14_1_2_6 { get; set; }
+			public bool a14_1_2_7 { get; set; }
+
 
 
 		}
@@ -186,6 +201,20 @@ string complete = "";
 				modelSurA2sByHc.ElementAt(index).checkSurveya2.a15_8 = String.IsNullOrEmpty(item.survey_A1.a15_8) ? false : true;
 				modelSurA2sByHc.ElementAt(index).checkSurveya2.a15_9 = String.IsNullOrEmpty(item.survey_A1.a15_9) ? false : true;
 				modelSurA2sByHc.ElementAt(index).checkSurveya2.a15_10 = String.IsNullOrEmpty(item.survey_A1.a15_10) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_1 = String.IsNullOrEmpty(item.survey_A1.a14_1_1_1) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_2 = String.IsNullOrEmpty(item.survey_A1.a14_1_1_2) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_3 = String.IsNullOrEmpty(item.survey_A1.a14_1_1_3) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_4 = String.IsNullOrEmpty(item.survey_A1.a14_1_1_4) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_5 = String.IsNullOrEmpty(item.survey_A1.a14_1_1_5) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_6 = String.IsNullOrEmpty(item.survey_A1.a14_1_1_6) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_7 = String.IsNullOrEmpty(item.survey_A1.a14_1_1_7) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_1 = String.IsNullOrEmpty(item.survey_A1.a14_1_2_1) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_2 = String.IsNullOrEmpty(item.survey_A1.a14_1_2_2) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_3 = String.IsNullOrEmpty(item.survey_A1.a14_1_2_3) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_4 = String.IsNullOrEmpty(item.survey_A1.a14_1_2_4) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_5 = String.IsNullOrEmpty(item.survey_A1.a14_1_2_5) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_6 = String.IsNullOrEmpty(item.survey_A1.a14_1_2_6) ? false : true;
+				modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_7 = String.IsNullOrEmpty(item.survey_A1.a14_1_2_7) ? false : true;
 				index++;
 
 
@@ -224,6 +253,20 @@ string complete = "";
 				modelSurA2sByHc.ElementAt(index).survey_A1.a15_8			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a15_8			? "8" : "";
 				modelSurA2sByHc.ElementAt(index).survey_A1.a15_9			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a15_9			? "9" : "";
 				modelSurA2sByHc.ElementAt(index).survey_A1.a15_10			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a15_10			? "10" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_1_1			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_1			? "1" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_1_2			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_2			? "2" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_1_3			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_3			? "3" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_1_4			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_4			? "4" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_1_5			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_5			? "5" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_1_6			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_6			? "6" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_1_7			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_1_7			 ? "7" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_2_1			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_1			? "1" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_2_2			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_2			? "2" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_2_3			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_3			? "3" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_2_4			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_4			? "4" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_2_5			 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_5			? "5" : "";
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_2_6				= modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_6		?"6" : ""; 
+				modelSurA2sByHc.ElementAt(index).survey_A1.a14_1_2_7				= modelSurA2sByHc.ElementAt(index).checkSurveya2.a14_1_2_7		?"7" : ""; 
 				//modelSurA2sByHc.ElementAt(index).survey_A1.a7_6 = modelSurA2sByHc.ElementAt(index).checkSurveya2.a7_6"_" ?: "";
 				await DBContext.UpdateItems<survey_a2>("survey_a2",
 					new List<survey_a2>() { modelSurA2sByHc.ElementAt(index).survey_A1 });
